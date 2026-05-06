@@ -29,7 +29,7 @@ class extends Component
                 ['title' => 'Inclusivity', 'desc' => 'Fostering a diverse and inclusive environment where all individuals can thrive.', 'icon' => 'fa-globe-africa'],
             ],
             'timeline' => [
-                ['year' => 'March 2019', 'title' => 'Establishment', 'desc' => 'Establishment of ' . ($institution->name ?? 'Our Institution') . ' through collaboration between the National Government and Tetu NG CDF.'],
+                ['year' => 'March 2019', 'title' => 'Establishment', 'desc' => 'Establishment of ' . ($institution->name ?? 'Our Institution') . ' by the Government of Ghana.'],
                 ['year' => '2019-2020', 'title' => 'Initial Growth', 'desc' => 'Growth from initial enrollment of 89 students to become a recognized institution for technical education in the region.'],
                 ['year' => 'February 2022', 'title' => 'Strategic Plan', 'desc' => 'Launch of our Strategic Plan (2020-2025) aligning with MoE and TVETA strategic objectives for institutional excellence.'],
                 ['year' => 'Present Day', 'title' => 'Continued Excellence', 'desc' => 'Continuing our mission of community engagement, environmental initiatives, and developing industry-aligned technical education.'],

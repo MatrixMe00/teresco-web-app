@@ -8,7 +8,7 @@ use App\Models\Application;
 use Carbon\Carbon;
 
 new
-#[Title('Apply Now | Tetu Technical & Vocational College')]
+#[Title('Apply Now | St. Theresas College of Education')]
 class extends Component
 {
     public $department_id = null;

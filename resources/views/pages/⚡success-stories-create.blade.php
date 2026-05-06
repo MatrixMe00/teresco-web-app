@@ -9,7 +9,7 @@ use App\Models\Course;
 use Livewire\WithFileUploads;
 
 new
-#[Title('Create Success Story | Tetu Technical & Vocational College')]
+#[Title('Create Success Story | St. Theresas College of Education')]
 class extends Component
 {
     use WithFileUploads;
@@ -54,7 +54,7 @@ class extends Component
         SuccessStory::create($validated);
 
         // Optional: flash success message and reset
-        session()->flash('success', 'Your story has been submitted! Once approved, you’ll join the ranks of our amazing alumni who are shaping the future through skills learned at Tetu Technical & Vocational College.');
+        session()->flash('success', 'Your story has been submitted! Once approved, you’ll join the ranks of our amazing alumni who are shaping the future through skills learned at St. Theresa\'s College of Education.');
         $this->reset();
     }
 };
@@ -82,7 +82,7 @@ class extends Component
             <div class="max-w-3xl mx-auto mb-12 text-center" data-aos="fade-up">
                 <h2 class="mb-4 text-3xl font-bold text-gray-900 md:text-4xl">Share Your Success Story</h2>
                 <p class="text-lg text-gray-600">We'd love to hear about your experiences and achievements after
-                    graduating from Tetu Technical & Vocational College. Your story can inspire others!</p>
+                    graduating from St Theresa's College of Education. Your story can inspire others!</p>
             </div>
 
             <!-- Flash Success -->

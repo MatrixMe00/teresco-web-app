@@ -4,7 +4,7 @@ use Livewire\Attributes\Title;
 use Livewire\Component;
 
 new
-#[Title('Terms and Conditions | Tetu Technical & Vocational College')]
+#[Title('Terms and Conditions | St Theresa's College of Education')]
 class extends Component
 {
     //
@@ -22,7 +22,7 @@ class extends Component
         <div class="container relative z-10 px-4 mx-auto text-center">
             <h1 class="mb-2 text-4xl font-bold text-white md:text-5xl lg:text-6xl">Terms and Conditions</h1>
             <p class="max-w-2xl mx-auto text-lg text-gray-300 md:text-xl">
-                Our terms and conditions for Tetu Technical and Vocational College
+                Our terms and conditions for St. Theresa's College of Education admissions and services. Please read carefully before applying.
             </p>
         </div>
     </section>

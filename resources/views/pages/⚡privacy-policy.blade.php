@@ -19,7 +19,7 @@ class extends Component
     <!-- Hero Section -->
     <section class="relative py-24 bg-gray-900">
         <div class="absolute inset-0">
-            <img src="{{ asset('images/gate.jpg') }}" alt="Tetu TVC Campus"
+            <img src="{{ asset('images/gate.jpg') }}" alt="TERESCO Campus"
                 class="w-full h-full object-cover opacity-25">
             <div class="absolute inset-0 bg-gradient-to-b from-gray-900/70 to-gray-900/90"></div>
         </div>

@@ -12,7 +12,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta name="description"
         content="{{ $institution->name }} offers quality education in Cosmetology, Hospitality, Fashion, ICT, and Agriculture. Join us for a brighter future!">
-    <link rel="canonical" href="https://www.tetutvc.ac.ke" />
+    <link rel="canonical" href="https://www.teresco.edu.gh" />
 
     <!-- Fonts -->
     <!-- Fonts: Clash Display (editorial) + Plus Jakarta Sans (body) -->
@@ -29,7 +29,7 @@
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://www.tetutvc.ac.ke/">
+    <meta property="og:url" content="https://www.teresco.edu.gh/">
     <meta property="og:title" content="{{ $institution->name }} | Quality Education in Kenya">
     <meta property="og:description"
         content="{{ $institution->name }} offers quality education in Cosmetology, Hospitality, Fashion, ICT, and Agriculture. Join us for a brighter future!">
@@ -37,7 +37,7 @@
 
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image">
-    <meta property="twitter:url" content="https://www.tetutvc.ac.ke/">
+    <meta property="twitter:url" content="https://www.teresco.edu.gh/">
     <meta property="twitter:title" content="{{ $institution->name }} | Quality Education in Kenya">
     <meta property="twitter:description"
         content="{{ $institution->name }} offers quality education in Cosmetology, Hospitality, Fashion, ICT, and Agriculture. Join us for a brighter future!">
@@ -66,14 +66,14 @@
                     </svg>
                     +254 758 660 300
                 </a>
-                <a href="mailto:info@tetutvc.ac.ke"
+                <a href="mailto:info@teresco.edu.gh"
                     class="flex items-center gap-1.5 hover:text-orange-500 transition-colors">
                     <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24"
                         stroke-width="1.7" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round"
                             d="M21.75 6.75v10.5a2.25 2.25 0 0 1-2.25 2.25h-15a2.25 2.25 0 0 1-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25m19.5 0v.243a2.25 2.25 0 0 1-1.07 1.916l-7.5 4.615a2.25 2.25 0 0 1-2.36 0L3.32 8.91a2.25 2.25 0 0 1-1.07-1.916V6.75" />
                     </svg>
-                    info@tetutvc.ac.ke
+                    info@teresco.edu.gh
                 </a>
             </div>
             <div class="hidden sm:flex items-center gap-5">
@@ -116,7 +116,7 @@
                 <a href="{{ route('home') }}" class="flex items-center gap-3 flex-shrink-0">
                     <img src="{{ asset('storage/'.$institution->logo) }}" alt="Logo" class="h-10 w-auto object-contain">
                     <div class="leading-tight">
-                        <div class="font-righteous font-bold text-gray-900 text-lg leading-none">TETU TVC</div>
+                        <div class="font-righteous font-bold text-gray-900 text-lg leading-none">TERESCO</div>
                         <div class="text-xs text-gray-500 tracking-wide">Skills for Industrial Growth</div>
                     </div>
                 </a>
@@ -335,7 +335,7 @@
                     Now</a></div>
         </div>
         <div class="mt-auto p-5 border-t border-gray-100 text-xs text-gray-500">
-            <p class="text-center">Tetu TVC — Skills for the Future</p>
+            <p class="text-center">TERESCO — Quality Education Here</p>
         </div>
     </div>
 

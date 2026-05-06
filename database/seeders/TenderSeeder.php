@@ -20,7 +20,7 @@ class TenderSeeder extends Seeder
             ],
             [
                 'title' => 'Construction of Student Dormitory',
-                'description' => 'Tetu TVC seeks qualified contractors for the construction of a 100-bed capacity student dormitory building including all necessary infrastructure.',
+                'description' => 'TERESCO seeks qualified contractors for the construction of a 100-bed capacity student dormitory building including all necessary infrastructure.',
                 'reference_number' => 'TTVCT/PROC/2025/002',
                 'opening_date' => now()->subDays(5),
                 'closing_date' => now()->addDays(25),
@@ -44,7 +44,7 @@ class TenderSeeder extends Seeder
             ],
             [
                 'title' => 'Renovation of Science Laboratories',
-                'description' => 'Tetu TVC invites bids for the renovation and upgrade of Chemistry, Physics, and Biology laboratories.',
+                'description' => 'TERESCO invites bids for the renovation and upgrade of Chemistry, Physics, and Biology laboratories.',
                 'reference_number' => 'TTVCT/PROC/2025/004',
                 'opening_date' => now()->subDays(3),
                 'closing_date' => now()->addDays(30),

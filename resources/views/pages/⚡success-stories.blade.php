@@ -5,7 +5,7 @@ use Livewire\Component;
 use App\Models\SuccessStory;
 
 new
-#[Title('Success Stories | Tetu Technical & Vocational College')]
+#[Title('Success Stories | St Theresa's College of Education')]
 class extends Component
 {
     public function with(){
@@ -23,7 +23,7 @@ class extends Component
     <!-- Hero Section with Parallax Effect -->
     <section class="relative py-20 overflow-hidden bg-gray-900">
         <div class="absolute inset-0 z-0">
-            <img src="{{ asset('images/gate.jpg') }}" alt="Tetu TVC Campus"
+            <img src="{{ asset('images/gate.jpg') }}" alt="Teresco Campus"
                 class="object-cover w-full h-full opacity-30">
             <div class="absolute inset-0 bg-gradient-to-b from-gray-900/70 to-gray-900/90"></div>
         </div>
@@ -193,7 +193,7 @@ class extends Component
         <div class="container px-4 mx-auto">
             <div class="flex flex-col items-center justify-between md:flex-row">
                 <div class="mb-8 text-center md:mb-0 md:text-left" data-aos="fade-right">
-                    <h2 class="mb-4 text-3xl font-bold">Ready to Start Your Career at Tetu Technical?</h2>
+                    <h2 class="mb-4 text-3xl font-bold">Ready to Start Your Career at TERESCO?</h2>
                     <p class="max-w-xl text-white/90">Take the first step toward your future career. Apply
                         now for our upcoming intake and join our community of successful graduates.</p>
                 </div>

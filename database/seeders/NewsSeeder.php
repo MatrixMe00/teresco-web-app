@@ -49,7 +49,7 @@ class NewsSeeder extends Seeder
             [
                 'title' => 'New ICT Lab Inauguration',
                 'excerpt' => 'We are excited to announce the opening of our state-of-the-art ICT laboratory.',
-                'content' => 'Tetu TVC is proud to announce the inauguration of our new ICT laboratory equipped with the latest computers and software. This facility will enhance our students\' digital literacy skills and prepare them for the modern workplace.',
+                'content' => 'TERESCO is proud to announce the inauguration of our new ICT laboratory equipped with the latest computers and software. This facility will enhance our students\' digital literacy skills and prepare them for the modern workplace.',
                 'image' => 'images/gate.jpg',
                 'is_published' => true,
                 'published_at' => now()->subDays(5),
@@ -57,7 +57,7 @@ class NewsSeeder extends Seeder
             [
                 'title' => 'College Achieves TVETA Accreditation',
                 'excerpt' => 'Our college has received full accreditation from TVETA for all our programs.',
-                'content' => 'We are delighted to announce that Tetu TVC has received full accreditation from the Technical and Vocational Education and Training Authority (TVETA) for all our programs. This achievement reflects our commitment to quality technical education.',
+                'content' => 'We are delighted to announce that TERESCO has received full accreditation from the Technical and Vocational Education and Training Authority (TVETA) for all our programs. This achievement reflects our commitment to quality technical education.',
                 'image' => 'images/gate.jpg',
                 'is_published' => true,
                 'published_at' => now()->subDays(10),
