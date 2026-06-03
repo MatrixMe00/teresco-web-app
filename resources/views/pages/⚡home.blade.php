@@ -66,8 +66,7 @@ class extends Component {
                 </div>
                 <h1 class="font-display text-5xl sm:text-6xl lg:text-7xl font-black leading-none text-white mb-6"
                     data-aos="fade-up" data-aos-delay="300">
-                    Build Skills.<br />
-                    <span class="text-orange-500">Build Futures.</span>
+                    {{ $institution->motto }}
                 </h1>
                 <p class="text-gray-300 text-lg leading-relaxed mb-8 max-w-lg" data-aos="fade-up" data-aos-delay="400">
                     St. Theresa's College of Education offers world-class technical education designed to equip
@@ -432,80 +431,48 @@ class extends Component {
             <div class="grid gap-8 lg:grid-cols-2 lg:items-center">
                 {{-- Left: Content --}}
                 <div data-aos="fade-right">
-                    <div class="flex items-center gap-3 mb-6">
-                        <button onclick="switchCharter('en')" id="btn-en"
-                            class="lang-btn px-4 py-2 rounded-lg text-sm font-semibold bg-primary text-white transition-all">
-                            English
-                        </button>
-                        <button onclick="switchCharter('sw')" id="btn-sw"
-                            class="lang-btn px-4 py-2 rounded-lg text-sm font-semibold bg-gray-200 text-gray-600 hover:bg-gray-300 transition-all">
-                            Kiswahili
-                        </button>
-                    </div>
-
                     <div id="charter-content">
                         <div id="en-content" class="charter-text">
-                            <h3 class="text-2xl font-bold text-gray-900 mb-4">Service Charter</h3>
+                            <h3 class="text-2xl font-bold text-gray-900 mb-4">{{ $institution->charter_title ?? 'Service Charter' }}</h3>
                             <p class="text-gray-600 leading-relaxed mb-6">
-                                Our service charter outlines our commitment to providing quality education and services
-                                to our students, parents, and stakeholders. We pledge to maintain the highest standards
-                                of professionalism, transparency, and accountability.
+                                {{ $institution->charter_description }}
                             </p>
                             <ul class="space-y-3 mb-6">
-                                <li class="flex items-start gap-3"><i
-                                        class="fas fa-check-circle text-primary mt-1"></i><span
-                                        class="text-gray-600">Quality technical and vocational education</span></li>
-                                <li class="flex items-start gap-3"><i
-                                        class="fas fa-check-circle text-primary mt-1"></i><span
-                                        class="text-gray-600">Timely response to inquiries</span></li>
-                                <li class="flex items-start gap-3"><i
-                                        class="fas fa-check-circle text-primary mt-1"></i><span
-                                        class="text-gray-600">Transparent admission processes</span></li>
-                                <li class="flex items-start gap-3"><i
-                                        class="fas fa-check-circle text-primary mt-1"></i><span
-                                        class="text-gray-600">Regular progress reports</span></li>
-                            </ul>
-                        </div>
-                        <div id="sw-content" class="charter-text hidden">
-                            <h3 class="text-2xl font-bold text-gray-900 mb-4">Mkataba wa Huduma</h3>
-                            <p class="text-gray-600 leading-relaxed mb-6">
-                                Mkataba wetu wa huduma unaonyowa ahadi yetu ya kutoa elimu na huduma bora kwa wanafunzi,
-                                wazazi, na watendakazi. Tunaahidi kushikamia viwango vya juu vya kitaaluma, uwazi, na
-                                uwajibikaji.
-                            </p>
-                            <ul class="space-y-3 mb-6">
-                                <li class="flex items-start gap-3"><i
-                                        class="fas fa-check-circle text-primary mt-1"></i><span
-                                        class="text-gray-600">Elimu ya kiwandani na ufundi bora</span></li>
-                                <li class="flex items-start gap-3"><i
-                                        class="fas fa-check-circle text-primary mt-1"></i><span
-                                        class="text-gray-600">Majibu ya haraka kwa maswali</span></li>
-                                <li class="flex items-start gap-3"><i
-                                        class="fas fa-check-circle text-primary mt-1"></i><span
-                                        class="text-gray-600">Mchakato wa usajili wa uwazi</span></li>
-                                <li class="flex items-start gap-3"><i
-                                        class="fas fa-check-circle text-primary mt-1"></i><span
-                                        class="text-gray-600">Ripoti za kawaida za maendeleo</span></li>
+                                @foreach($institution->charter_items ?? [] as $item)
+                                    <li class="flex items-start gap-3">
+                                        <i class="fas fa-check-circle text-primary mt-1"></i>
+                                        <span class="text-gray-600">
+                                            <strong>{{ $item['service'] ?? '' }}</strong>: {{ $item['timeline'] ?? '' }} ({{ $item['cost'] ?? 'Free' }})
+                                        </span>
+                                    </li>
+                                @endforeach
                             </ul>
                         </div>
                     </div>
 
                     <div class="flex items-center gap-4">
-                        <a href="#"
-                            class="inline-flex items-center gap-2 px-5 py-2.5 bg-primary text-white rounded-lg font-semibold hover:brightness-110 transition-all">
-                            <i class="fas fa-download text-sm"></i> Download
-                        </a>
-                        <button
-                            class="inline-flex items-center gap-2 px-5 py-2.5 border border-gray-300 text-gray-700 rounded-lg font-semibold hover:bg-gray-50 transition-all">
-                            <i class="fas fa-play text-sm"></i> Play Audio
-                        </button>
+                        @if($institution->charter_download_file)
+                            <a href="{{ asset('storage/' . $institution->charter_download_file) }}" target="_blank"
+                                class="inline-flex items-center gap-2 px-5 py-2.5 bg-primary text-white rounded-lg font-semibold hover:brightness-110 transition-all">
+                                <i class="fas fa-download text-sm"></i> Download PDF
+                            </a>
+                        @endif
+                        @if($institution->charter_audio_file)
+                            <div x-data="{ playing: false, audio: null }" class="flex items-center gap-2">
+                                <button @click="if(!audio) { audio = new Audio('{{ asset('storage/' . $institution->charter_audio_file) }}') }; if(playing) { audio.pause(); playing = false; } else { audio.play(); playing = true; }"
+                                    class="inline-flex items-center gap-2 px-5 py-2.5 border border-gray-300 text-gray-700 rounded-lg font-semibold hover:bg-gray-50 transition-all">
+                                    <i class="fas" :class="playing ? 'fa-pause' : 'fa-play'"></i>
+                                    <span x-text="playing ? 'Pause Audio' : 'Play Audio'">Play Audio</span>
+                                </button>
+                            </div>
+                        @endif
                     </div>
                 </div>
 
                 {{-- Right: Image --}}
                 <div data-aos="fade-up" data-aos-delay="100">
                     <div class="aspect-[4/3] rounded-2xl overflow-hidden shadow-xl">
-                        <img id="charter-image" src="{{ asset('images/placeholders/service-charter-en.jpg') }}"
+                        <img id="charter-image" src="{{ $institution->charter_image ? asset('storage/' . $institution->charter_image) : asset('images/placeholders/service-charter-en.jpg') }}"
                             alt="Service Charter" class="object-top w-full h-full">
                     </div>
                 </div>

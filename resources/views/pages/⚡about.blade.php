@@ -12,29 +12,41 @@ class extends Component
 {
     public function with()
     {
-        $institution = Institution::first() ?? (object) ['name' => 'Our College', 'motto' => 'Excellence in Technical Education', 'vision' => 'To be a center of excellence in technical and vocational education.', 'mission' => 'To provide quality technical education.', 'established_year' => '2019'];
+        $institution = Institution::first() ?? (object) [
+            'name' => 'Our College',
+            'motto' => 'Excellence in Technical Education',
+            'vision' => 'To be a center of excellence in technical and vocational education.',
+            'mission' => 'To provide quality technical education.',
+            'established_year' => '2019',
+            'about_us' => 'St. Theresa\'s College of Education is committed to providing quality education.',
+            'about_us_image' => '',
+            'stats' => [],
+            'timeline' => [],
+            'community_impact' => [],
+            'core_values' => []
+        ];
 
         return [
             'institution' => $institution,
-            'stats' => [
+            'stats' => $institution->stats ?? [
                 ['value' => '500', 'suffix' => '+', 'label' => 'Students Enrolled', 'icon' => 'fa-user-graduate'],
                 ['value' => '15', 'suffix' => '+', 'label' => 'Technical Programs', 'icon' => 'fa-book'],
                 ['value' => '30', 'suffix' => '+', 'label' => 'Qualified Instructors', 'icon' => 'fa-chalkboard-teacher'],
                 ['value' => '85', 'suffix' => '%', 'label' => 'Graduate Employment', 'icon' => 'fa-briefcase'],
             ],
-            'values' => [
+            'values' => $institution->core_values ?? [
                 ['title' => 'Excellence', 'desc' => 'Pursuing the highest standards in all our academic and operational activities.', 'icon' => 'fa-check-circle'],
                 ['title' => 'Integrity', 'desc' => 'Upholding honesty, transparency and ethical conduct in all our actions.', 'icon' => 'fa-user-shield'],
                 ['title' => 'Innovation', 'desc' => 'Embracing creativity and forward-thinking approaches to educational challenges.', 'icon' => 'fa-lightbulb'],
                 ['title' => 'Inclusivity', 'desc' => 'Fostering a diverse and inclusive environment where all individuals can thrive.', 'icon' => 'fa-globe-africa'],
             ],
-            'timeline' => [
+            'timeline' => $institution->timeline ?? [
                 ['year' => 'March 2019', 'title' => 'Establishment', 'desc' => 'Establishment of ' . ($institution->name ?? 'Our Institution') . ' by the Government of Ghana.'],
                 ['year' => '2019-2020', 'title' => 'Initial Growth', 'desc' => 'Growth from initial enrollment of 89 students to become a recognized institution for technical education in the region.'],
                 ['year' => 'February 2022', 'title' => 'Strategic Plan', 'desc' => 'Launch of our Strategic Plan (2020-2025) aligning with MoE and TVETA strategic objectives for institutional excellence.'],
                 ['year' => 'Present Day', 'title' => 'Continued Excellence', 'desc' => 'Continuing our mission of community engagement, environmental initiatives, and developing industry-aligned technical education.'],
             ],
-            'impact' => [
+            'impact' => $institution->community_impact ?? [
                 ['title' => 'Economic Development', 'desc' => 'Providing employment opportunities for local professionals and sourcing produce from local farmers to support the community economy.', 'icon' => 'fa-chart-line'],
                 ['title' => 'Environmental Initiatives', 'desc' => 'Promoting sustainable practices through tree seedling distribution and educational programs on environmental conservation.', 'icon' => 'fa-leaf'],
                 ['title' => 'Agricultural Innovation', 'desc' => 'Encouraging avocado farming and other agricultural practices to enhance food security and create sustainable livelihoods.', 'icon' => 'fa-seedling'],
@@ -49,7 +61,7 @@ class extends Component
     <!-- Hero Section with Parallax Effect -->
     <section class="relative clip-diagonal grain py-20 overflow-hidden bg-gray-900">
         <div class="absolute inset-0 z-0">
-            <img src="{{ asset('images/gate.jpg') }}" alt="{{ $institution->name }} Campus"
+            <img src="{{ $institution->about_us_image ? asset('storage/' . $institution->about_us_image) : asset('images/gate.jpg') }}" alt="{{ $institution->name }} Campus"
                 class="object-cover w-full h-full opacity-30">
             <div class="absolute inset-0 bg-gradient-to-b from-gray-900/70 to-gray-900/90"></div>
         </div>
@@ -68,6 +80,10 @@ class extends Component
                 <div data-aos="fade-right" class="order-2 lg:order-1">
                     <span class="inline-block px-3 py-1 rounded-full bg-primary/10 text-primary text-xs font-bold tracking-widest uppercase mb-3">Who We Are</span>
                     <h2 class="text-3xl lg:text-4xl font-extrabold text-gray-900 mb-6">Building the Future Through Technical Excellence</h2>
+
+                    <div class="prose max-w-none text-gray-600 mb-8 leading-relaxed">
+                        {!! $institution->about_us !!}
+                    </div>
 
                     <div class="space-y-6">
                         <div class="p-5 border-l-4 border-primary bg-gray-50 rounded-r-lg" data-aos="fade-up" data-aos-delay="100">
@@ -88,7 +104,7 @@ class extends Component
                 {{-- Image --}}
                 <div data-aos="fade-left" class="relative order-1 lg:order-2">
                     <div class="aspect-[4/3] rounded-2xl overflow-hidden shadow-xl">
-                        <img src="{{ asset('images/gate.jpg') }}" alt="{{ $institution->name }} Campus"
+                        <img src="{{ $institution->about_us_image ? asset('storage/' . $institution->about_us_image) : asset('images/gate.jpg') }}" alt="{{ $institution->name }} Campus"
                             class="object-cover w-full h-full">
                     </div>
                     <div class="absolute -bottom-4 -right-4 bg-primary text-white px-6 py-4 rounded-xl shadow-lg">

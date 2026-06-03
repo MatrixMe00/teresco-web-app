@@ -10,9 +10,12 @@
 @theme {
     --font-sans: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
         'Segoe UI Symbol', 'Noto Color Emoji';
-    --color-primary: oklch(64.6% 0.222 41.116);
-    --color-orange-brand: #ea580c;
-    --color-orange-light: #fff7ed;
+    --color-primary: var(--primary-color, #7A4B7D);
+    --color-primary-rgb: var(--primary-color-rgb, 122, 75, 125);
+    --color-secondary: #2E7D32;
+    --color-accent: #FBC02D;
+    --color-orange-brand: var(--primary-color);
+    --color-orange-light: rgba(var(--primary-color-rgb), 0.05);
     --color-dark: #111111;
     --font-display: 'Playfair Display', serif;
     --font-body: 'Source Sans 3', sans-serif;
@@ -97,14 +100,14 @@ html {
 .label-pill {
     display: inline-block;
     padding: 0.5rem 1.25rem;
-    background: rgba(249, 115, 22, 0.25);
-    border: 1px solid rgba(249, 115, 22, 0.5);
+    background: rgba(var(--primary-color-rgb), 0.25);
+    border: 1px solid rgba(var(--primary-color-rgb), 0.5);
     border-radius: 9999px;
     font-size: 0.75rem;
     font-weight: 700;
     letter-spacing: 0.1em;
     text-transform: uppercase;
-    color: #fb923c;
+    color: var(--primary-color);
     backdrop-filter: blur(4px);
 }
  #navbar.scrolled {
@@ -119,7 +122,7 @@ html {
      left: 0;
      min-width: 240px;
      background: white;
-     border-top: 3px solid #ea580c;
+     border-top: 3px solid var(--primary-color);
      box-shadow: 0 12px 40px rgba(0,0,0,0.13);
      z-index: 200;
      animation: fadeDown 0.18s ease;
@@ -147,7 +150,7 @@ html {
      left: 0;
      width: 0;
      height: 2px;
-     background: #ea580c;
+     background: var(--primary-color);
      transition: width 0.25s ease;
 }
  .nav-link:hover::after {
@@ -158,13 +161,13 @@ html {
 }
  .prog-card:hover {
      transform: translateY(-6px);
-     box-shadow: 0 20px 48px rgba(234,88,12,0.13);
+     box-shadow: 0 20px 48px rgba(var(--primary-color-rgb), 0.13);
 }
  .stat-num {
      font-family: var(--font-display);
      font-size: clamp(2.5rem, 5vw, 4rem);
      line-height: 1;
-     color: #ea580c;
+     color: var(--primary-color);
 }
 /* LEFT SLIDING MOBILE DRAWER */
  .mobile-drawer {
@@ -206,7 +209,7 @@ html {
      font-weight: 700;
      letter-spacing: 0.12em;
      text-transform: uppercase;
-     color: #ea580c;
+     color: var(--primary-color);
      margin-bottom: 0.75rem;
 }
   .section-label::before {
@@ -214,7 +217,7 @@ html {
       display: block;
       width: 28px;
       height: 3px;
-      background: #ea580c;
+      background: var(--primary-color);
       border-radius: 2px;
 }
 
@@ -346,8 +349,8 @@ html {
     content: '';
     position: absolute;
     inset: 0;
-    background-image: radial-gradient(circle at 20% 50%, rgba(234, 88, 12, .15) 0%, transparent 60%),
-        radial-gradient(circle at 80% 50%, rgba(234, 88, 12, .08) 0%, transparent 50%);
+    background-image: radial-gradient(circle at 20% 50%, rgba(var(--primary-color-rgb), .15) 0%, transparent 60%),
+        radial-gradient(circle at 80% 50%, rgba(var(--primary-color-rgb), .08) 0%, transparent 50%);
     pointer-events: none;
 }
 .cta-dots {

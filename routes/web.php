@@ -30,3 +30,6 @@ Route::livewire('/news', 'pages::news')->name('news');
 Route::livewire('/create-success-story', 'pages::success-stories-create')->name('create.success.story');
 Route::livewire('/admissions', 'pages::admissions')->name('admissions');
 Route::livewire('/admissions/complete', 'pages::admission-complete')->name('admissions.complete');
+Route::livewire('/service-charter', 'pages::service-charter')->name('service.charter');
+Route::livewire('/admission-lists', 'pages::admission-lists')->name('admission.lists');
+Route::livewire('/leadership', 'pages::leadership')->name('leadership');

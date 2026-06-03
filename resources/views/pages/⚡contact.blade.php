@@ -121,8 +121,7 @@ class extends Component
                 </div>
                 <div>
                   <p class="font-medium text-gray-900">Phone</p>
-                  <a href="tel:{{ $institution->phone }}" class="mt-1 text-primary transition">{{ $institution->phone }}
-                    300</a>
+                  <a href="tel:{{ $institution->phone }}" class="mt-1 text-primary transition">{{ $institution->phone }}</a>
                 </div>
               </li>
 

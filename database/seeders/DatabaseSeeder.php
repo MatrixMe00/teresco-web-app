@@ -30,6 +30,7 @@ class DatabaseSeeder extends Seeder
             VacancySeeder::class,
             NewsSeeder::class,
             GallerySeeder::class,
+            AdmissionListSeeder::class,
         ]);
     }
 }

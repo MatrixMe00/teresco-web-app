@@ -58,22 +58,22 @@
     <div class="bg-gray-900 text-gray-300 text-sm py-2 px-4">
         <div class="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-y-2">
             <div class="flex-grow flex justify-between md:justify-start items-center gap-4">
-                <a href="tel:+254758660300" class="flex items-center gap-1.5 hover:text-orange-500 transition-colors">
+                <a href="tel:{{ $institution->phone }}" class="flex items-center gap-1.5 hover:text-orange-500 transition-colors">
                     <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24"
                         stroke-width="1.7" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round"
                             d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 0 0 2.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 0 1-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 0 0-1.091-.852H4.5A2.25 2.25 0 0 0 2.25 4.5v2.25Z" />
                     </svg>
-                    +254 758 660 300
+                    {{ $institution->phone }}
                 </a>
-                <a href="mailto:info@teresco.edu.gh"
+                <a href="mailto:{{ $institution->email }}"
                     class="flex items-center gap-1.5 hover:text-orange-500 transition-colors">
                     <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24"
                         stroke-width="1.7" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round"
                             d="M21.75 6.75v10.5a2.25 2.25 0 0 1-2.25 2.25h-15a2.25 2.25 0 0 1-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25m19.5 0v.243a2.25 2.25 0 0 1-1.07 1.916l-7.5 4.615a2.25 2.25 0 0 1-2.36 0L3.32 8.91a2.25 2.25 0 0 1-1.07-1.916V6.75" />
                     </svg>
-                    info@teresco.edu.gh
+                    {{ $institution->email }}
                 </a>
             </div>
             <div class="hidden sm:flex items-center gap-5">
@@ -83,22 +83,22 @@
                     <a href="#" class="hover:text-orange-500 transition-colors font-semibold text-orange-400">ODeL</a>
                 </div>
                 <div class="hidden sm:flex items-center gap-3">
-                    <a href="#" aria-label="Facebook" class="hover:text-orange-500 transition-colors"><svg
+                    <a href="{{ $institution->facebook ?? '#' }}" aria-label="Facebook" class="hover:text-orange-500 transition-colors"><svg
                             class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
                             <path
                                 d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z" />
                         </svg></a>
-                    <a href="#" aria-label="TikTok" class="hover:text-orange-500 transition-colors"><svg class="w-4 h-4"
+                    <a href="{{ $institution->tiktok ?? '#' }}" aria-label="TikTok" class="hover:text-orange-500 transition-colors"><svg class="w-4 h-4"
                             fill="currentColor" viewBox="0 0 24 24">
                             <path
                                 d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V8.67a8.18 8.18 0 004.79 1.52V6.74a4.85 4.85 0 01-1.02-.05z" />
                         </svg></a>
-                    <a href="#" aria-label="Twitter" class="hover:text-orange-500 transition-colors"><svg
+                    <a href="{{ $institution->x ?? '#' }}" aria-label="Twitter" class="hover:text-orange-500 transition-colors"><svg
                             class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
                             <path
                                 d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
                         </svg></a>
-                    <a href="#" aria-label="YouTube" class="hover:text-orange-500 transition-colors"><svg
+                    <a href="{{ $institution->youtube ?? '#' }}" aria-label="YouTube" class="hover:text-orange-500 transition-colors"><svg
                             class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
                             <path
                                 d="M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 00.502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z" />
@@ -117,7 +117,7 @@
                     <img src="{{ asset('storage/'.$institution->logo) }}" alt="Logo" class="h-10 w-auto object-contain">
                     <div class="leading-tight">
                         <div class="font-righteous font-bold text-gray-900 text-lg leading-none">TERESCO</div>
-                        <div class="text-xs text-gray-500 tracking-wide">Skills for Industrial Growth</div>
+                        <div class="text-xs text-gray-500 tracking-wide">{{ $institution->motto }}</div>
                     </div>
                 </a>
 
@@ -212,6 +212,10 @@
                             <a href="{{ route('past.papers') }}"
                                 class="block px-5 py-3 text-sm text-gray-700 hover:bg-orange-50 hover:text-orange-600">Past
                                 Papers</a>
+                            <a href="{{ route('service.charter') }}"
+                                class="block px-5 py-3 text-sm text-gray-700 hover:bg-orange-50 hover:text-orange-600">Service Charter</a>
+                            <a href="{{ route('admission.lists') }}"
+                                class="block px-5 py-3 text-sm text-gray-700 hover:bg-orange-50 hover:text-orange-600">Admission List</a>
                         </div>
                     </div>
                     <a href="{{ route('contact') }}"
@@ -325,6 +329,8 @@
                     <a href="{{ route('tenders') }}" class="block py-1 text-sm">Tenders</a>
                     <a href="{{ route('vacancies') }}" class="block py-1 text-sm">Vacancies</a>
                     <a href="{{ route('past.papers') }}" class="block py-1 text-sm">Past Papers</a>
+                    <a href="{{ route('service.charter') }}" class="block py-1 text-sm">Service Charter</a>
+                    <a href="{{ route('admission.lists') }}" class="block py-1 text-sm">Admission List</a>
                 </div>
             </details>
             <a href="{{ route('contact') }}"
@@ -361,8 +367,7 @@
                             class="h-10 w-auto object-contain brightness-0 invert opacity-90">
                         <span class="font-righteous text-xl text-white/90">{{ $institution->name }}</span>
                     </div>
-                    <p class="text-sm text-gray-400 leading-relaxed mb-5">{{ $institution->name }} is committed to
-                        providing quality education and training to empower students for successful careers.</p>
+                    <p class="text-sm text-gray-400 leading-relaxed mb-5">{{ $institution->footer_description ?? ($institution->name . ' is committed to providing quality education and training to empower students for successful careers.') }}</p>
                     <a href="{{ route('about') }}"
                         class="inline-flex items-center gap-1.5 text-sm font-semibold text-primary hover:text-orange-300 transition-colors">
                         Learn More <i class="fas fa-arrow-right text-[10px]"></i>
@@ -389,12 +394,12 @@
                         <li><a href="{{ route('downloads') }}"
                                 class="flex items-center gap-2 text-sm text-gray-400 hover:text-white transition-colors"><i
                                     class="fas fa-chevron-right text-[9px] text-primary"></i> Downloads</a></li>
-                        <li><a href="{{ route('tenders') }}"
+                        <li><a href="{{ route('service.charter') }}"
                                 class="flex items-center gap-2 text-sm text-gray-400 hover:text-white transition-colors"><i
-                                    class="fas fa-chevron-right text-[9px] text-primary"></i> Tenders</a></li>
-                        <li><a href="{{ route('vacancies') }}"
+                                    class="fas fa-chevron-right text-[9px] text-primary"></i> Service Charter</a></li>
+                        <li><a href="{{ route('admission.lists') }}"
                                 class="flex items-center gap-2 text-sm text-gray-400 hover:text-white transition-colors"><i
-                                    class="fas fa-chevron-right text-[9px] text-primary"></i> Vacancies</a></li>
+                                    class="fas fa-chevron-right text-[9px] text-primary"></i> Admission List</a></li>
                     </ul>
                 </div>
 
@@ -437,23 +442,21 @@
             <div
                 class="max-w-7xl mx-auto px-4 lg:px-8 py-5 flex flex-col md:flex-row items-center justify-between gap-4">
                 <div class="flex items-center gap-3">
-                    <a href="#" aria-label="Facebook"
+                    <a href="{{ $institution->facebook ?? '#' }}" aria-label="Facebook"
                         class="w-8 h-8 flex items-center justify-center rounded-lg bg-white/5 text-gray-400 hover:bg-primary hover:text-white transition-all text-xs"><i
                             class="fab fa-facebook-f"></i></a>
-                    <a href="#" aria-label="TikTok"
+                    <a href="{{ $institution->tiktok ?? '#' }}" aria-label="TikTok"
                         class="w-8 h-8 flex items-center justify-center rounded-lg bg-white/5 text-gray-400 hover:bg-primary hover:text-white transition-all text-xs"><i
                             class="fab fa-tiktok"></i></a>
-                    <a href="#" aria-label="Twitter/X"
+                    <a href="{{ $institution->x ?? '#' }}" aria-label="Twitter/X"
                         class="w-8 h-8 flex items-center justify-center rounded-lg bg-white/5 text-gray-400 hover:bg-primary hover:text-white transition-all text-xs"><i
                             class="fab fa-x-twitter"></i></a>
-                    <a href="#" aria-label="Instagram"
+                    <a href="{{ $institution->youtube ?? '#' }}" aria-label="YouTube"
                         class="w-8 h-8 flex items-center justify-center rounded-lg bg-white/5 text-gray-400 hover:bg-primary hover:text-white transition-all text-xs"><i
-                            class="fab fa-instagram"></i></a>
+                            class="fab fa-youtube"></i></a>
                 </div>
                 <p class="text-xs text-gray-500 text-center">
-                    © {{ date('Y') }} {{ $institution->name }}. Crafted by
-                    <a href="http://github.com/titustum"
-                        class="text-blue-400 hover:text-blue-300 hover:underline transition-colors">Titus Tum</a>.
+                    {!! str_replace('{year}', date('Y'), $institution->footer_copyright ?? '© {year} ' . $institution->name . '. Crafted by Titus Tum.') !!}
                 </p>
             </div>
         </div>
