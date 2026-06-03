@@ -17,8 +17,15 @@ class TrackPageVisits
             $request->ajax() ||                // AJAX/API
             $request->is('api/*') ||           // API
             $request->is('login') ||           // Login page
+            $request->is('livewire/*') ||      // Livewire system routes
             $request->method() !== 'GET'       // Only track GET requests
         ) {
+            return $next($request);
+        }
+
+        // Exclude asset file extensions
+        $path = $request->path();
+        if (preg_match('/\.(js|css|png|jpg|jpeg|gif|svg|ico|map|json|xml|txt|woff|woff2|ttf|eot)$/i', $path)) {
             return $next($request);
         }
 

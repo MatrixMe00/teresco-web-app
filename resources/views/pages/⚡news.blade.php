@@ -4,6 +4,9 @@ use Livewire\Attributes\Title;
 use Livewire\Attributes\Layout;
 use Livewire\Component;
 use App\Models\Institution;
+use App\Models\NewsItem;
+use App\Models\NewsCategory;
+use Illuminate\Support\Str;
 
 new
 #[Title("News & Updates")]
@@ -12,106 +15,49 @@ class extends Component
 {
     public $selectedCategory = 'all';
     public $search = '';
-    public $updates = [];
-
 
     public function with()
     {
         $institution = Institution::first() ?? (object) ['name' => 'Our College'];
-
-        $updates = [
-            (object) [
-                'id' => 1,
-                'title' => 'Intake 2025 Now Open',
-                'category' => 'Admissions',
-                'date' => '2025-04-01',
-                'description' => 'We are now accepting applications for the 2025 academic year. Join us and build your future with quality technical education.',
-                'image' => 'images/gate.jpg',
-                'featured' => true,
-            ],
-            (object) [
-                'id' => 2,
-                'title' => 'TVETA Accreditation Renewed',
-                'category' => 'Achievement',
-                'date' => '2025-03-15',
-                'description' => 'Our institution has successfully renewed TVETA accreditation for all our programs. This reaffirms our commitment to quality technical education.',
-                'image' => 'images/gate.jpg',
-                'featured' => false,
-            ],
-            (object) [
-                'id' => 3,
-                'title' => 'Annual Sports Day 2025',
-                'category' => 'Events',
-                'date' => '2025-03-10',
-                'description' => 'Join us for our annual sports day featuring various competitive sports and team activities. All students are encouraged to participate.',
-                'image' => 'images/gate.jpg',
-                'featured' => false,
-            ],
-            (object) [
-                'id' => 4,
-                'title' => 'New ICT Laboratory Opened',
-                'category' => 'Facilities',
-                'date' => '2025-02-28',
-                'description' => 'We are excited to announce the opening of our state-of-the-art ICT laboratory with 50 new computer stations.',
-                'image' => 'images/gate.jpg',
-                'featured' => false,
-            ],
-            (object) [
-                'id' => 5,
-                'title' => 'Partnership with Local Industries',
-                'category' => 'Partnership',
-                'date' => '2025-02-15',
-                'description' => 'New partnerships with local industries will provide more internship opportunities for our students.',
-                'image' => 'images/gate.jpg',
-                'featured' => false,
-            ],
-            (object) [
-                'id' => 6,
-                'title' => 'Graduation Ceremony 2024',
-                'category' => 'Events',
-                'date' => '2024-12-20',
-                'description' => 'Our annual graduation ceremony celebrated the achievements of over 300 graduates. Congratulations to all our graduates!',
-                'image' => 'images/gate.jpg',
-                'featured' => false,
-            ],
-            (object) [
-                'id' => 7,
-                'title' => 'Career Fair 2024',
-                'category' => 'Events',
-                'date' => '2024-11-15',
-                'description' => 'Over 20 employers participated in our annual career fair, providing networking opportunities for final year students.',
-                'image' => 'images/gate.jpg',
-                'featured' => false,
-            ],
-            (object) [
-                'id' => 8,
-                'title' => 'Best Technical College Award',
-                'category' => 'Achievement',
-                'date' => '2024-10-05',
-                'description' => 'We are honored to receive the Best Technical College Award from the County Education Board.',
-                'image' => 'images/gate.jpg',
-                'featured' => false,
-            ],
-        ];
-
-        $categories = ['Admissions', 'Achievement', 'Events', 'Facilities', 'Partnership'];
+        $categories = NewsCategory::pluck('name')->toArray();
 
         return [
             'institution' => $institution,
-            'updates' => collect($updates),
             'categories' => $categories,
         ];
     }
 
     public function getFilteredUpdatesProperty()
     {
-        return collect($this->updates)->filter(function ($update) {
-            $categoryMatch = $this->selectedCategory === 'all' || $update->category === $this->selectedCategory;
-            $searchMatch = empty($this->search) ||
-                stripos($update->title, $this->search) !== false ||
-                stripos($update->description, $this->search) !== false;
-            return $categoryMatch && $searchMatch;
-        })->values();
+        $query = NewsItem::where('is_published', true)->with('category');
+
+        if ($this->selectedCategory !== 'all') {
+            $query->whereHas('category', function ($q) {
+                $q->where('name', $this->selectedCategory);
+            });
+        }
+
+        if (!empty($this->search)) {
+            $query->where(function ($q) {
+                $q->where('title', 'like', '%' . $this->search . '%')
+                  ->orWhere('excerpt', 'like', '%' . $this->search . '%')
+                  ->orWhere('content', 'like', '%' . $this->search . '%');
+            });
+        }
+
+        $newsItems = $query->latest('published_at')->get();
+
+        return $newsItems->values()->map(function ($item, $index) {
+            return (object) [
+                'id' => $item->id,
+                'title' => $item->title,
+                'category' => $item->category?->name ?? 'News',
+                'date' => $item->published_at ? $item->published_at->toDateString() : $item->created_at->toDateString(),
+                'description' => $item->excerpt ?? Str::limit(strip_tags($item->content), 150),
+                'image' => $item->image ? (Str::startsWith($item->image, 'images/') ? $item->image : 'storage/' . $item->image) : 'images/gate.jpg',
+                'featured' => $index === 0, // Latest is featured
+            ];
+        });
     }
 };
 ?>

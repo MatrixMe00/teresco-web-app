@@ -15,6 +15,10 @@ class extends Component
 
     public function mount(): void
     {
+        $this->institution = Institution::first() ?? (object) [
+            'name' => 'St. Theresa\'s College of Education',
+        ];
+
         $this->deputyAdmin = TeamMember::with('role')
             ->whereHas('role', function ($query) {
                 $query->where('name', 'Deputy Principal');

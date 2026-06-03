@@ -27,6 +27,12 @@ class extends Component
 
     public function mount(): void
     {
+        $this->institution = Institution::first() ?? (object) [
+            'name' => 'St. Theresa\'s College of Education',
+            'welcome_message' => 'Welcome to our college.',
+            'principal_photo' => null,
+        ];
+
         // No caching — fetch directly from the database
         $this->principal = TeamMember::with('role')
             ->whereHas('role', function ($query) {
@@ -34,10 +40,12 @@ class extends Component
             })
             ->first();
 
+        $this->principalMessage = $this->principal?->bio ?? 'Welcome to St. Theresa\'s College of Education. We are dedicated to providing the best learning environment and practical training for our students.';
+
         $this->academicDepartmentsList = Department::all();
 
         // College stats and information
-        $this->collegeOverview = "$this->institution->name is a leading institution committed to providing high-quality technical and vocational education and training. We equip our students with practical skills and knowledge that are highly relevant to the demands of the modern workforce and contribute to national development.";
+        $this->collegeOverview = "{$this->institution->name} is a leading institution committed to providing high-quality technical and vocational education and training. We equip our students with practical skills and knowledge that are highly relevant to the demands of the modern workforce and contribute to national development.";
 
         $this->ourValues = [
             'Excellence' => 'Striving for the highest standards in education and training',

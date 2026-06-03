@@ -5,7 +5,7 @@ use Livewire\Component;
 use App\Models\SuccessStory;
 
 new
-#[Title('Success Stories | St Theresa's College of Education')]
+#[Title("Success Stories | St. Theresa's College of Education")]
 class extends Component
 {
     public function with(){

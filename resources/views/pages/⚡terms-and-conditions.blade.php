@@ -4,7 +4,7 @@ use Livewire\Attributes\Title;
 use Livewire\Component;
 
 new
-#[Title('Terms and Conditions | St Theresa's College of Education')]
+#[Title("Terms and Conditions | St. Theresa's College of Education")]
 class extends Component
 {
     //
