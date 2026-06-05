@@ -33,8 +33,8 @@ class GalleriesTable
                 //
             ])
             ->recordActions([
-                ViewAction::make()->iconButton()->tooltip('View Gallery'),
-                EditAction::make()->iconButton()->tooltip('Edit Gallery'),
+                ViewAction::make()->slideOver()->modalWidth('lg')->iconButton()->tooltip('View Gallery'),
+                EditAction::make()->slideOver()->modalWidth('lg')->iconButton()->tooltip('Edit Gallery'),
             ])
             ->toolbarActions([
                 BulkActionGroup::make([

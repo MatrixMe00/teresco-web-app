@@ -2,10 +2,7 @@
 
 namespace App\Filament\Resources\HeroSlides;
 
-use App\Filament\Resources\HeroSlides\Pages\CreateHeroSlide;
-use App\Filament\Resources\HeroSlides\Pages\EditHeroSlide;
 use App\Filament\Resources\HeroSlides\Pages\ListHeroSlides;
-use App\Filament\Resources\HeroSlides\Pages\ViewHeroSlide;
 use App\Filament\Resources\HeroSlides\Schemas\HeroSlideForm;
 use App\Filament\Resources\HeroSlides\Schemas\HeroSlideInfolist;
 use App\Filament\Resources\HeroSlides\Tables\HeroSlidesTable;
@@ -53,9 +50,6 @@ class HeroSlideResource extends Resource
     {
         return [
             'index' => ListHeroSlides::route('/'),
-            'create' => CreateHeroSlide::route('/create'),
-            'view' => ViewHeroSlide::route('/{record}'),
-            'edit' => EditHeroSlide::route('/{record}/edit'),
         ];
     }
 }

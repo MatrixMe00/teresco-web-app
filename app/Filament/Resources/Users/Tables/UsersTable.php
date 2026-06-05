@@ -41,8 +41,8 @@ class UsersTable
                 //
             ])
             ->recordActions([
-                ViewAction::make()->iconButton()->tooltip('View User'),
-                EditAction::make()->iconButton()->tooltip('Edit User'),
+                ViewAction::make()->slideOver()->modalWidth('lg')->iconButton()->tooltip('View User'),
+                EditAction::make()->slideOver()->modalWidth('lg')->iconButton()->tooltip('Edit User'),
             ])
             ->toolbarActions([
                 BulkActionGroup::make([

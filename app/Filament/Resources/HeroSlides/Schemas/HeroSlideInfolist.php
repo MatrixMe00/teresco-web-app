@@ -4,6 +4,8 @@ namespace App\Filament\Resources\HeroSlides\Schemas;
 
 use Filament\Infolists\Components\ImageEntry;
 use Filament\Infolists\Components\TextEntry;
+use Filament\Schemas\Components\Grid;
+use Filament\Schemas\Components\Section;
 use Filament\Schemas\Schema;
 
 class HeroSlideInfolist
@@ -12,16 +14,34 @@ class HeroSlideInfolist
     {
         return $schema
             ->components([
-                ImageEntry::make('image')->disk('public'),
-                TextEntry::make('title'),
-                TextEntry::make('subtitle'),
-                TextEntry::make('slogan'),
-                TextEntry::make('button_text'),
-                TextEntry::make('button_link'),
-                TextEntry::make('created_at')
-                    ->dateTime(),
-                TextEntry::make('updated_at')
-                    ->dateTime(),
+                Section::make('Hero Slide Information')
+                    ->columnSpanFull()
+                    ->schema([
+                        ImageEntry::make('image')
+                            ->label('Slide Banner Image')
+                            ->disk('public')
+                            ->columnSpanFull(),
+
+                        Grid::make(2)->schema([
+                            TextEntry::make('title')
+                                ->label('Title / Heading')
+                                ->weight('semibold'),
+                            TextEntry::make('subtitle')
+                                ->label('Subheading'),
+                            TextEntry::make('slogan')
+                                ->label('Slogan'),
+                            TextEntry::make('button_text')
+                                ->label('Button Text'),
+                            TextEntry::make('button_link')
+                                ->label('Button Link')
+                                ->url(fn ($record) => $record->button_link)
+                                ->openUrlInNewTab()
+                                ->color('primary'),
+                            TextEntry::make('created_at')
+                                ->label('Created At')
+                                ->dateTime(),
+                        ]),
+                    ]),
             ]);
     }
 }

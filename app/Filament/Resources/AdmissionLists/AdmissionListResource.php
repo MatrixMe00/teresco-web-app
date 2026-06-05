@@ -2,10 +2,7 @@
 
 namespace App\Filament\Resources\AdmissionLists;
 
-use App\Filament\Resources\AdmissionLists\Pages\CreateAdmissionList;
-use App\Filament\Resources\AdmissionLists\Pages\EditAdmissionList;
 use App\Filament\Resources\AdmissionLists\Pages\ListAdmissionLists;
-use App\Filament\Resources\AdmissionLists\Pages\ViewAdmissionList;
 use App\Filament\Resources\AdmissionLists\Schemas\AdmissionListForm;
 use App\Filament\Resources\AdmissionLists\Schemas\AdmissionListInfolist;
 use App\Filament\Resources\AdmissionLists\Tables\AdmissionListsTable;
@@ -51,9 +48,6 @@ class AdmissionListResource extends Resource
     {
         return [
             'index' => ListAdmissionLists::route('/'),
-            'create' => CreateAdmissionList::route('/create'),
-            'view' => ViewAdmissionList::route('/{record}'),
-            'edit' => EditAdmissionList::route('/{record}/edit'),
         ];
     }
 }

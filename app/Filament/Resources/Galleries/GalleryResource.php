@@ -2,10 +2,7 @@
 
 namespace App\Filament\Resources\Galleries;
 
-use App\Filament\Resources\Galleries\Pages\CreateGallery;
-use App\Filament\Resources\Galleries\Pages\EditGallery;
 use App\Filament\Resources\Galleries\Pages\ListGalleries;
-use App\Filament\Resources\Galleries\Pages\ViewGallery;
 use App\Filament\Resources\Galleries\Schemas\GalleryForm;
 use App\Filament\Resources\Galleries\Schemas\GalleryInfolist;
 use App\Filament\Resources\Galleries\Tables\GalleriesTable;
@@ -51,9 +48,6 @@ class GalleryResource extends Resource
     {
         return [
             'index' => ListGalleries::route('/'),
-            'create' => CreateGallery::route('/create'),
-            'view' => ViewGallery::route('/{record}'),
-            'edit' => EditGallery::route('/{record}/edit'),
         ];
     }
 }

@@ -18,20 +18,30 @@ class UserForm
                     ->columnSpanFull()
                     ->schema([
                         TextInput::make('name')
+                            ->label('Name')
+                            ->placeholder('e.g., Jane Doe')
                             ->required(),
+
                         TextInput::make('email')
-                            ->label('Email address')
+                            ->label('Email Address')
                             ->email()
-                            ->required(),
+                            ->required()
+                            ->unique(ignoreRecord: true),
+
                         Select::make('role')
+                            ->label('System Role')
                             ->options([
                                 'admin' => 'Admin',
-                                'user' => 'User',
+                                'editor' => 'Editor',
                             ])
                             ->required(),
+
                         TextInput::make('password')
+                            ->label('Password')
                             ->password()
-                            ->required(),
+                            ->placeholder('Enter password...')
+                            ->dehydrated(fn ($state) => filled($state))
+                            ->required(fn (string $context): bool => $context === 'create'),
                     ]),
             ]);
     }
