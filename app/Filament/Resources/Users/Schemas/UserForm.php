@@ -14,19 +14,21 @@ class UserForm
         return $schema
             ->components([
                 Section::make('User Details')
-                    ->columns(2)
                     ->columnSpanFull()
+                    ->columns(1)
                     ->schema([
                         TextInput::make('name')
                             ->label('Name')
                             ->placeholder('e.g., Jane Doe')
-                            ->required(),
+                            ->required()
+                            ->columnSpanFull(),
 
                         TextInput::make('email')
                             ->label('Email Address')
                             ->email()
                             ->required()
-                            ->unique(ignoreRecord: true),
+                            ->unique(ignoreRecord: true)
+                            ->columnSpanFull(),
 
                         Select::make('role')
                             ->label('System Role')
@@ -34,14 +36,16 @@ class UserForm
                                 'admin' => 'Admin',
                                 'editor' => 'Editor',
                             ])
-                            ->required(),
+                            ->required()
+                            ->columnSpanFull(),
 
                         TextInput::make('password')
                             ->label('Password')
                             ->password()
                             ->placeholder('Enter password...')
                             ->dehydrated(fn ($state) => filled($state))
-                            ->required(fn (string $context): bool => $context === 'create'),
+                            ->required(fn (string $context): bool => $context === 'create')
+                            ->columnSpanFull(),
                     ]),
             ]);
     }

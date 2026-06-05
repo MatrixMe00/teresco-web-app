@@ -4,6 +4,8 @@ namespace App\Providers;
 
 use App\Models\Department;
 use App\Models\Institution;
+use Filament\Support\Assets\Css;
+use Filament\Support\Facades\FilamentAsset;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
 
@@ -22,6 +24,11 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
+        // Register custom admin stylesheet for premium UI overrides (buttons, modals, etc.)
+        FilamentAsset::register([
+            Css::make('custom-admin-theme', public_path('css/custom-admin.css')),
+        ]);
+
         // Share institution and departments with all views using view composer
         View::composer('*', function ($view) {
             $institution = Institution::first() ?? (object) [

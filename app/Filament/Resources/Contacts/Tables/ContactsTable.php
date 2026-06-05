@@ -35,8 +35,8 @@ class ContactsTable
                 //
             ])
             ->recordActions([
-                ViewAction::make()->slideOver()->modalWidth('lg')->iconButton()->tooltip('View Contact Inquiry'),
-                EditAction::make()->slideOver()->modalWidth('lg')->iconButton()->tooltip('Edit Contact Inquiry'),
+                ViewAction::make()->modalWidth('lg')->iconButton()->tooltip('View Contact Inquiry'),
+                EditAction::make()->modalWidth('lg')->iconButton()->tooltip('Edit Contact Inquiry'),
             ])
             ->toolbarActions([
                 BulkActionGroup::make([

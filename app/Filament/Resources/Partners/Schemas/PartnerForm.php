@@ -15,24 +15,26 @@ class PartnerForm
             ->components([
                 Section::make('Partner Details')
                     ->description('Manage relationships with industry and academic partners.')
-                    ->columnSpan('full')
+                    ->columnSpanFull()
+                    ->columns(1)
                     ->schema([
                         TextInput::make('name')
                             ->label('Partner Name')
                             ->placeholder('e.g., Mastercard Foundation')
-                            ->required(),
+                            ->required()
+                            ->columnSpanFull(),
 
                         TextInput::make('website')
                             ->label('Website URL')
                             ->placeholder('e.g., https://example.com')
                             ->url()
-                            ->nullable(),
+                            ->nullable()
+                            ->columnSpanFull(),
 
                         SchemaHelper::featuredImageUpload('logo', 'Partner Logo', 'partners')
                             ->required()
                             ->columnSpanFull(),
-                    ])
-                    ->columns(2),
+                    ]),
             ]);
     }
 }

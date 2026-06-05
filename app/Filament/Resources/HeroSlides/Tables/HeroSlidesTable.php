@@ -41,8 +41,8 @@ class HeroSlidesTable
                 //
             ])
             ->recordActions([
-                ViewAction::make()->slideOver()->modalWidth('lg')->iconButton()->tooltip('View Slide'),
-                EditAction::make()->slideOver()->modalWidth('lg')->iconButton()->tooltip('Edit Slide'),
+                ViewAction::make()->modalWidth('xl')->iconButton()->tooltip('View Slide'),
+                EditAction::make()->modalWidth('xl')->iconButton()->tooltip('Edit Slide'),
             ])
             ->toolbarActions([
                 BulkActionGroup::make([

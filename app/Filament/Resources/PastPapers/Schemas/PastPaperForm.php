@@ -16,24 +16,28 @@ class PastPaperForm
             ->components([
                 Section::make('Past Paper Details')
                     ->description('Upload academic past papers for courses and study levels.')
-                    ->columnSpan('full')
+                    ->columnSpanFull()
+                    ->columns(1)
                     ->schema([
                         TextInput::make('title')
                             ->label('Title')
                             ->placeholder('e.g., Introduction to Programming - Final')
-                            ->required(),
+                            ->required()
+                            ->columnSpanFull(),
 
                         Select::make('course_id')
                             ->label('Course Name')
                             ->relationship('course', 'name')
                             ->searchable()
                             ->preload()
-                            ->required(),
+                            ->required()
+                            ->columnSpanFull(),
 
                         TextInput::make('unit_name')
                             ->label('Unit Name / Code')
                             ->placeholder('e.g., CSC 1101')
-                            ->required(),
+                            ->required()
+                            ->columnSpanFull(),
 
                         Select::make('exam_type')
                             ->label('Exam Type')
@@ -41,24 +45,26 @@ class PastPaperForm
                             ->options([
                                 'final' => 'Final Exam',
                                 'midterm' => 'Midterm Exam',
-                            ]),
+                            ])
+                            ->columnSpanFull(),
 
                         TextInput::make('exam_year')
                             ->label('Exam Year')
                             ->placeholder('e.g., 2025')
                             ->required()
-                            ->numeric(),
+                            ->numeric()
+                            ->columnSpanFull(),
 
                         TextInput::make('term')
                             ->label('Term / Semester')
                             ->placeholder('e.g., Semester 1')
-                            ->nullable(),
+                            ->nullable()
+                            ->columnSpanFull(),
 
                         SchemaHelper::pdfAttachmentUpload('file_path', 'Past Paper PDF Document', 'past-papers')
                             ->required()
                             ->columnSpanFull(),
-                    ])
-                    ->columns(2),
+                    ]),
             ]);
     }
 }

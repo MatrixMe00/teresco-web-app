@@ -14,13 +14,15 @@ class RoleForm
             ->components([
                 Section::make('Role Details')
                     ->description('Define user groups and access levels.')
-                    ->columnSpan('full')
+                    ->columnSpanFull()
+                    ->columns(1)
                     ->schema([
                         TextInput::make('name')
                             ->label('Role Name')
                             ->placeholder('e.g., Administrator, Editor')
                             ->required()
-                            ->unique(ignoreRecord: true),
+                            ->unique(ignoreRecord: true)
+                            ->columnSpanFull(),
                     ]),
             ]);
     }

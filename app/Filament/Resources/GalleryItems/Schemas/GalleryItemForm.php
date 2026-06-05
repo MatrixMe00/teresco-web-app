@@ -17,23 +17,27 @@ class GalleryItemForm
             ->components([
                 Section::make('Gallery Item Details')
                     ->description('Assign images or videos to albums in the media galleries.')
-                    ->columnSpan('full')
+                    ->columnSpanFull()
+                    ->columns(1)
                     ->schema([
                         Select::make('gallery_id')
                             ->label('Gallery Album')
                             ->relationship('gallery', 'name')
                             ->required()
-                            ->placeholder('Select album...'),
+                            ->placeholder('Select album...')
+                            ->columnSpanFull(),
 
                         TextInput::make('name')
                             ->label('Caption / Name')
                             ->placeholder('e.g., Graduation Day 2026')
-                            ->required(),
+                            ->required()
+                            ->columnSpanFull(),
 
                         TextInput::make('category')
                             ->label('Category tag')
                             ->placeholder('e.g., Academics, Sports, Campus')
-                            ->nullable(),
+                            ->nullable()
+                            ->columnSpanFull(),
 
                         Textarea::make('description')
                             ->label('Additional Description')
@@ -44,8 +48,7 @@ class GalleryItemForm
                         SchemaHelper::featuredImageUpload('image', 'Gallery Photo', 'gallery')
                             ->required()
                             ->columnSpanFull(),
-                    ])
-                    ->columns(2),
+                    ]),
             ]);
     }
 }

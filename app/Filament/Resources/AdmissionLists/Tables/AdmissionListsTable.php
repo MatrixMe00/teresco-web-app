@@ -39,8 +39,8 @@ class AdmissionListsTable
                 //
             ])
             ->recordActions([
-                ViewAction::make()->slideOver()->modalWidth('lg')->iconButton()->tooltip('View Admission List'),
-                EditAction::make()->slideOver()->modalWidth('lg')->iconButton()->tooltip('Edit Admission List'),
+                ViewAction::make()->modalWidth('xl')->iconButton()->tooltip('View Admission List'),
+                EditAction::make()->modalWidth('xl')->iconButton()->tooltip('Edit Admission List'),
             ])
             ->toolbarActions([
                 BulkActionGroup::make([

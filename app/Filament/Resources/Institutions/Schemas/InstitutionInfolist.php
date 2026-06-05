@@ -4,7 +4,7 @@ namespace App\Filament\Resources\Institutions\Schemas;
 
 use Filament\Infolists\Components\IconEntry;
 use Filament\Infolists\Components\ImageEntry;
-use Filament\Infolists\Components\KeyValueEntry;
+use Filament\Infolists\Components\RepeatableEntry;
 use Filament\Infolists\Components\TextEntry;
 use Filament\Schemas\Components\Grid;
 use Filament\Schemas\Components\Section;
@@ -52,16 +52,36 @@ class InstitutionInfolist
                             ->disk('public')
                             ->columnSpanFull(),
 
-                        KeyValueEntry::make('stats')
+                        RepeatableEntry::make('stats')
                             ->label('Institutional Stats')
+                            ->schema([
+                                TextEntry::make('value')
+                                    ->label('Value')
+                                    ->weight('bold')
+                                    ->formatStateUsing(fn ($state, $record) => $state.($record['suffix'] ?? '')),
+                                TextEntry::make('label')->label('Label'),
+                            ])
+                            ->columns(2)
                             ->columnSpanFull(),
 
-                        KeyValueEntry::make('timeline')
+                        RepeatableEntry::make('timeline')
                             ->label('Institutional History Timeline')
+                            ->schema([
+                                TextEntry::make('year')->label('Year')->weight('bold'),
+                                TextEntry::make('title')->label('Title'),
+                                TextEntry::make('desc')->label('Description'),
+                            ])
+                            ->columns(3)
                             ->columnSpanFull(),
 
-                        KeyValueEntry::make('core_values')
+                        RepeatableEntry::make('core_values')
                             ->label('Core Values')
+                            ->schema([
+                                TextEntry::make('title')->label('Title')->weight('bold'),
+                                TextEntry::make('desc')->label('Description'),
+                                TextEntry::make('icon')->label('Icon'),
+                            ])
+                            ->columns(3)
                             ->columnSpanFull(),
                     ]),
 

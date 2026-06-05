@@ -13,7 +13,7 @@ class ListRoles extends ListRecords
     protected function getHeaderActions(): array
     {
         return [
-            CreateAction::make()->slideOver()->modalWidth('md'),
+            CreateAction::make()->modalWidth('lg'),
         ];
     }
 }

@@ -13,7 +13,7 @@ class ListGalleries extends ListRecords
     protected function getHeaderActions(): array
     {
         return [
-            CreateAction::make()->slideOver()->modalWidth('lg'),
+            CreateAction::make()->modalWidth('xl'),
         ];
     }
 }

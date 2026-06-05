@@ -17,17 +17,20 @@ class DownloadForm
             ->components([
                 Section::make('Download File Details')
                     ->description('Upload files that visitors can download from the portal.')
-                    ->columnSpan('full')
+                    ->columnSpanFull()
+                    ->columns(1)
                     ->schema([
                         TextInput::make('title')
                             ->label('Title')
                             ->placeholder('e.g., Student Handbook 2026')
-                            ->required(),
+                            ->required()
+                            ->columnSpanFull(),
 
                         TextInput::make('category')
                             ->label('Category')
                             ->placeholder('e.g., Handbook, Form, Guide')
-                            ->required(),
+                            ->required()
+                            ->columnSpanFull(),
 
                         Textarea::make('description')
                             ->label('Description')
@@ -45,9 +48,9 @@ class DownloadForm
                         Toggle::make('is_public')
                             ->label('Publicly Visible')
                             ->default(true)
-                            ->required(),
-                    ])
-                    ->columns(2),
+                            ->required()
+                            ->columnSpanFull(),
+                    ]),
             ]);
     }
 }

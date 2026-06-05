@@ -1,0 +1,120 @@
+/* Custom Premium Styles for Teresco Admin Panel */
+
+/* General Button Styles */
+.fi-btn {
+    border-radius: 9999px !important; /* Elegant pill-shaped buttons */
+    font-weight: 600 !important;
+    letter-spacing: 0.025em !important;
+    text-transform: uppercase !important;
+    font-size: 0.75rem !important;
+    padding: 0.625rem 1.5rem !important;
+    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1) !important;
+    position: relative !important;
+    overflow: hidden !important;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03) !important;
+}
+
+/* Primary/Submit Button (Mauve #7a4b7d) */
+.fi-btn.fi-color-primary,
+button[type="submit"].fi-btn {
+    background: linear-gradient(135deg, #8b578e 0%, #7a4b7d 100%) !important;
+    border: 1px solid rgba(122, 75, 125, 0.2) !important;
+    color: #ffffff !important;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1) !important;
+}
+
+.fi-btn.fi-color-primary:hover,
+button[type="submit"].fi-btn:hover {
+    background: linear-gradient(135deg, #9c63a0 0%, #8b578e 100%) !important;
+    box-shadow: 0 10px 15px -3px rgba(122, 75, 125, 0.3), 0 4px 6px -2px rgba(122, 75, 125, 0.15) !important;
+    transform: translateY(-1px) !important;
+}
+
+.fi-btn.fi-color-primary:active,
+button[type="submit"].fi-btn:active {
+    transform: translateY(1px) !important;
+    box-shadow: 0 2px 4px 0 rgba(122, 75, 125, 0.2) !important;
+}
+
+/* Gray/Secondary Buttons (Cancel, Create & Create Another) */
+.fi-btn.fi-color-gray {
+    background: #ffffff !important;
+    color: #374151 !important;
+    border: 1px solid #e5e7eb !important;
+}
+
+.fi-btn.fi-color-gray:hover {
+    background: #f9fafb !important;
+    border-color: #d1d5db !important;
+    color: #111827 !important;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05), 0 4px 6px -2px rgba(0, 0, 0, 0.02) !important;
+    transform: translateY(-1px) !important;
+}
+
+.fi-btn.fi-color-gray:active {
+    transform: translateY(1px) !important;
+}
+
+/* Danger Buttons (Delete) */
+.fi-btn.fi-color-danger {
+    background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%) !important;
+    border: 1px solid rgba(220, 38, 38, 0.2) !important;
+    color: #ffffff !important;
+}
+
+.fi-btn.fi-color-danger:hover {
+    background: linear-gradient(135deg, #f87171 0%, #ef4444 100%) !important;
+    box-shadow: 0 10px 15px -3px rgba(239, 68, 68, 0.3), 0 4px 6px -2px rgba(239, 68, 68, 0.15) !important;
+    transform: translateY(-1px) !important;
+}
+
+/* Modal Styling Enhancements */
+.fi-modal-window {
+    border-radius: 1.25rem !important;
+    border: 1px solid rgba(0, 0, 0, 0.05) !important;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25), 0 0 40px rgba(122, 75, 125, 0.05) !important;
+    overflow: hidden !important;
+}
+
+/* Modal Header styling */
+.fi-modal-header {
+    background: #fafafa !important;
+    padding: 1.5rem 2rem !important;
+    border-bottom: 1px solid #f3f4f6 !important;
+}
+
+.fi-modal-heading {
+    font-weight: 700 !important;
+    color: #111827 !important;
+    font-family: 'Plus Jakarta Sans', sans-serif !important;
+}
+
+/* Modal Footer styling */
+.fi-modal-footer {
+    background: #fafafa !important;
+    padding: 1.25rem 2rem !important;
+    border-top: 1px solid #f3f4f6 !important;
+    gap: 1rem !important;
+}
+
+/* Form Sections */
+.fi-fo-section {
+    border-radius: 0.75rem !important;
+    border: 1px solid #f3f4f6 !important;
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.05) !important;
+}
+
+/* Input Fields hover and focus effects */
+.fi-input-wrp {
+    transition: all 0.2s ease !important;
+    border-radius: 0.5rem !important;
+}
+
+.fi-input-wrp:hover {
+    border-color: #d1d5db !important;
+}
+
+.fi-input-wrp:focus-within {
+    border-color: #7a4b7d !important;
+    box-shadow: 0 0 0 3px rgba(122, 75, 125, 0.12) !important;
+}

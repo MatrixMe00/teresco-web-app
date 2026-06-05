@@ -15,11 +15,14 @@ class GalleryForm
         return $schema
             ->components([
                 Section::make('Gallery Album Details')
+                    ->columnSpanFull()
+                    ->columns(1)
                     ->schema([
                         TextInput::make('name')
                             ->label('Album Name')
                             ->placeholder('e.g., Graduation 2025')
-                            ->required(),
+                            ->required()
+                            ->columnSpanFull(),
 
                         Textarea::make('description')
                             ->label('Description')
@@ -28,7 +31,8 @@ class GalleryForm
                             ->columnSpanFull(),
 
                         SchemaHelper::featuredImageUpload('image', 'Cover Photo', 'gallery')
-                            ->required(),
+                            ->required()
+                            ->columnSpanFull(),
                     ]),
             ]);
     }
