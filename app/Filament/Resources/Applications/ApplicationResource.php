@@ -26,6 +26,10 @@ class ApplicationResource extends Resource
 
     protected static ?string $recordTitleAttribute = 'full_name';
 
+    protected static \UnitEnum|string|null $navigationGroup = 'Admissions & Portal';
+
+    protected static ?int $navigationSort = 1;
+
     public static function form(Schema $schema): Schema
     {
         return ApplicationForm::configure($schema);

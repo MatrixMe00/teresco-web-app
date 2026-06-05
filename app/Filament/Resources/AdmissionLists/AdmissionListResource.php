@@ -10,7 +10,6 @@ use App\Filament\Resources\AdmissionLists\Schemas\AdmissionListForm;
 use App\Filament\Resources\AdmissionLists\Schemas\AdmissionListInfolist;
 use App\Filament\Resources\AdmissionLists\Tables\AdmissionListsTable;
 use App\Models\AdmissionList;
-use BackedEnum;
 use Filament\Resources\Resource;
 use Filament\Schemas\Schema;
 use Filament\Support\Icons\Heroicon;
@@ -20,11 +19,13 @@ class AdmissionListResource extends Resource
 {
     protected static ?string $model = AdmissionList::class;
 
-    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedClipboardDocumentList;
+    protected static string|\BackedEnum|null $navigationIcon = Heroicon::OutlinedClipboardDocumentList;
 
     protected static ?string $recordTitleAttribute = 'title';
 
-    protected static ?int $navigationSort = 11;
+    protected static \UnitEnum|string|null $navigationGroup = 'Admissions & Portal';
+
+    protected static ?int $navigationSort = 2;
 
     public static function form(Schema $schema): Schema
     {

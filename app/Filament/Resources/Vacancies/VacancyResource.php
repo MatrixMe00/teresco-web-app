@@ -10,7 +10,6 @@ use App\Filament\Resources\Vacancies\Schemas\VacancyForm;
 use App\Filament\Resources\Vacancies\Schemas\VacancyInfolist;
 use App\Filament\Resources\Vacancies\Tables\VacanciesTable;
 use App\Models\Vacancy;
-use BackedEnum;
 use Filament\Resources\Resource;
 use Filament\Schemas\Schema;
 use Filament\Support\Icons\Heroicon;
@@ -20,11 +19,15 @@ class VacancyResource extends Resource
 {
     protected static ?string $model = Vacancy::class;
 
-    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedDocumentMagnifyingGlass;
+    protected static string|\BackedEnum|null $navigationIcon = Heroicon::OutlinedDocumentMagnifyingGlass;
 
-    protected static string|BackedEnum|null $activeNavigationIcon = Heroicon::DocumentMagnifyingGlass;
+    protected static string|\BackedEnum|null $activeNavigationIcon = Heroicon::DocumentMagnifyingGlass;
 
     protected static ?string $recordTitleAttribute = 'title';
+
+    protected static \UnitEnum|string|null $navigationGroup = 'Content Management';
+
+    protected static ?int $navigationSort = 7;
 
     public static function form(Schema $schema): Schema
     {

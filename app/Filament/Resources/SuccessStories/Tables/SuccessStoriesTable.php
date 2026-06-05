@@ -6,7 +6,6 @@ use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteBulkAction;
 use Filament\Actions\EditAction;
 use Filament\Actions\ViewAction;
-use Filament\Tables\Columns\IconColumn;
 use Filament\Tables\Columns\ImageColumn;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
@@ -37,8 +36,11 @@ class SuccessStoriesTable
                 TextColumn::make('rating')
                     ->numeric()
                     ->sortable(),
-                IconColumn::make('is_approved')
-                    ->boolean()
+                TextColumn::make('is_approved')
+                    ->label('Status')
+                    ->badge()
+                    ->state(fn ($record): string => $record->is_approved ? 'Approved' : 'Pending')
+                    ->color(fn ($record): string => $record->is_approved ? 'success' : 'warning')
                     ->sortable(),
                 TextColumn::make('created_at')
                     ->dateTime()
@@ -53,8 +55,8 @@ class SuccessStoriesTable
                 //
             ])
             ->recordActions([
-                ViewAction::make(),
-                EditAction::make(),
+                ViewAction::make()->iconButton()->tooltip('View Success Story'),
+                EditAction::make()->iconButton()->tooltip('Edit Success Story'),
             ])
             ->toolbarActions([
                 BulkActionGroup::make([

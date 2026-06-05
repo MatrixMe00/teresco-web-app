@@ -10,7 +10,6 @@ use App\Filament\Resources\HeroSlides\Schemas\HeroSlideForm;
 use App\Filament\Resources\HeroSlides\Schemas\HeroSlideInfolist;
 use App\Filament\Resources\HeroSlides\Tables\HeroSlidesTable;
 use App\Models\HeroSlide;
-use BackedEnum;
 use Filament\Resources\Resource;
 use Filament\Schemas\Schema;
 use Filament\Support\Icons\Heroicon;
@@ -20,9 +19,13 @@ class HeroSlideResource extends Resource
 {
     protected static ?string $model = HeroSlide::class;
 
-    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
+    protected static string|\BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
 
     protected static ?string $recordTitleAttribute = 'title';
+
+    protected static \UnitEnum|string|null $navigationGroup = 'Content Management';
+
+    protected static ?int $navigationSort = 1;
 
     public static function form(Schema $schema): Schema
     {

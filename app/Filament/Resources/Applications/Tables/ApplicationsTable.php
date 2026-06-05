@@ -26,6 +26,14 @@ class ApplicationsTable
                     ->searchable(),
                 // TextColumn::make('alternative_phone')
                 //     ->searchable(),
+                TextColumn::make('gender')
+                    ->badge()
+                    ->color(fn (string $state): string => match (strtolower($state)) {
+                        'male' => 'info',
+                        'female' => 'danger',
+                        default => 'gray',
+                    })
+                    ->searchable(),
                 TextColumn::make('id_number')
                     ->searchable(),
                 TextColumn::make('course.name')
@@ -63,8 +71,8 @@ class ApplicationsTable
                 //
             ])
             ->recordActions([
-                ViewAction::make(),
-                EditAction::make(),
+                ViewAction::make()->iconButton()->tooltip('View Application'),
+                EditAction::make()->iconButton()->tooltip('Edit Application'),
             ])
             ->toolbarActions([
                 BulkActionGroup::make([

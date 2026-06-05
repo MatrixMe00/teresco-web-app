@@ -9,7 +9,6 @@ use Filament\Http\Middleware\DispatchServingFilamentEvent;
 use Filament\Pages\Dashboard;
 use Filament\Panel;
 use Filament\PanelProvider;
-use Filament\Support\Colors\Color;
 use Filament\Widgets\AccountWidget;
 use Filament\Widgets\FilamentInfoWidget;
 use Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse;
@@ -29,12 +28,15 @@ class AdminPanelProvider extends PanelProvider
             ->path('admin')
             ->login()
             ->colors([
-                'primary' => Color::Orange,
+                'primary' => '#7a4b7d',
+                'success' => '#10b981',
+                'warning' => '#eab308',
+                'danger' => '#ef4444',
             ])
             ->font('Inter')
             ->favicon(asset('images/logo.jpeg'))
             // ->brandLogo(asset('images/logo.jpeg'))
-            ->brandName('Web Admin')
+            ->brandName('TERESCO Admin')
             // ->globalSearchKeyBindings(['ctrl+k', 'cmd+k'])
             ->discoverResources(in: app_path('Filament/Resources'), for: 'App\Filament\Resources')
             ->discoverPages(in: app_path('Filament/Pages'), for: 'App\Filament\Pages')

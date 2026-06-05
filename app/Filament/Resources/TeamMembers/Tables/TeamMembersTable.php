@@ -17,7 +17,8 @@ class TeamMembersTable
         return $table
             ->columns([
                 ImageColumn::make('photo')
-                    ->disk('public'),
+                    ->disk('public')
+                    ->circular(),
                 TextColumn::make('name')
                     ->searchable(),
                 TextColumn::make('department.name')
@@ -52,8 +53,8 @@ class TeamMembersTable
                 //
             ])
             ->recordActions([
-                ViewAction::make(),
-                EditAction::make(),
+                ViewAction::make()->iconButton()->tooltip('View Staff Member'),
+                EditAction::make()->iconButton()->tooltip('Edit Staff Member'),
             ])
             ->toolbarActions([
                 BulkActionGroup::make([

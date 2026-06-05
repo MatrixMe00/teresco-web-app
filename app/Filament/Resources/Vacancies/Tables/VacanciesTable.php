@@ -31,6 +31,13 @@ class VacanciesTable
                 TextColumn::make('attachment_path')
                     ->searchable(),
                 TextColumn::make('status')
+                    ->badge()
+                    ->color(fn (string $state): string => match (strtolower($state)) {
+                        'open', 'active' => 'success',
+                        'closed', 'expired' => 'danger',
+                        'draft' => 'warning',
+                        default => 'gray',
+                    })
                     ->searchable(),
                 TextColumn::make('created_at')
                     ->dateTime()
@@ -45,8 +52,8 @@ class VacanciesTable
                 //
             ])
             ->recordActions([
-                ViewAction::make(),
-                EditAction::make(),
+                ViewAction::make()->iconButton()->tooltip('View Vacancy'),
+                EditAction::make()->iconButton()->tooltip('Edit Vacancy'),
             ])
             ->toolbarActions([
                 BulkActionGroup::make([

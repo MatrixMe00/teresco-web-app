@@ -10,7 +10,6 @@ use App\Filament\Resources\NewsItems\Schemas\NewsItemForm;
 use App\Filament\Resources\NewsItems\Schemas\NewsItemInfolist;
 use App\Filament\Resources\NewsItems\Tables\NewsItemsTable;
 use App\Models\NewsItem;
-use BackedEnum;
 use Filament\Resources\Resource;
 use Filament\Schemas\Schema;
 use Filament\Support\Icons\Heroicon;
@@ -20,9 +19,11 @@ class NewsItemResource extends Resource
 {
     protected static ?string $model = NewsItem::class;
 
-    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedNewspaper;
+    protected static string|\BackedEnum|null $navigationIcon = Heroicon::OutlinedNewspaper;
 
-    protected static ?int $navigationSort = 13;
+    protected static \UnitEnum|string|null $navigationGroup = 'Content Management';
+
+    protected static ?int $navigationSort = 2;
 
     public static function form(Schema $schema): Schema
     {

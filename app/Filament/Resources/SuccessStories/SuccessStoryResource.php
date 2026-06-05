@@ -10,7 +10,6 @@ use App\Filament\Resources\SuccessStories\Schemas\SuccessStoryForm;
 use App\Filament\Resources\SuccessStories\Schemas\SuccessStoryInfolist;
 use App\Filament\Resources\SuccessStories\Tables\SuccessStoriesTable;
 use App\Models\SuccessStory;
-use BackedEnum;
 use Filament\Resources\Resource;
 use Filament\Schemas\Schema;
 use Filament\Support\Icons\Heroicon;
@@ -20,11 +19,15 @@ class SuccessStoryResource extends Resource
 {
     protected static ?string $model = SuccessStory::class;
 
-    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedStar;
+    protected static string|\BackedEnum|null $navigationIcon = Heroicon::OutlinedStar;
 
-    protected static string|BackedEnum|null $activeNavigationIcon = Heroicon::Star;
+    protected static string|\BackedEnum|null $activeNavigationIcon = Heroicon::Star;
 
     protected static ?string $recordTitleAttribute = 'name';
+
+    protected static \UnitEnum|string|null $navigationGroup = 'Content Management';
+
+    protected static ?int $navigationSort = 6;
 
     public static function form(Schema $schema): Schema
     {

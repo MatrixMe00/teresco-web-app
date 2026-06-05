@@ -5,6 +5,7 @@ use Livewire\Component;
 use App\Models\TeamMember;
 use App\Models\Department;
 use App\Models\Course;
+use App\Models\Institution;
 
 new
 #[Title("Deputy Principal Academics")]

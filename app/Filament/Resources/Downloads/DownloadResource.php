@@ -10,7 +10,6 @@ use App\Filament\Resources\Downloads\Schemas\DownloadForm;
 use App\Filament\Resources\Downloads\Schemas\DownloadInfolist;
 use App\Filament\Resources\Downloads\Tables\DownloadsTable;
 use App\Models\Download;
-use BackedEnum;
 use Filament\Resources\Resource;
 use Filament\Schemas\Schema;
 use Filament\Support\Icons\Heroicon;
@@ -20,11 +19,15 @@ class DownloadResource extends Resource
 {
     protected static ?string $model = Download::class;
 
-    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedArrowDownOnSquareStack;
+    protected static string|\BackedEnum|null $navigationIcon = Heroicon::OutlinedArrowDownOnSquareStack;
 
-    protected static string|BackedEnum|null $activeNavigationIcon = Heroicon::ArrowDownOnSquareStack;
+    protected static string|\BackedEnum|null $activeNavigationIcon = Heroicon::ArrowDownOnSquareStack;
 
     protected static ?string $recordTitleAttribute = 'title';
+
+    protected static \UnitEnum|string|null $navigationGroup = 'Content Management';
+
+    protected static ?int $navigationSort = 9;
 
     public static function form(Schema $schema): Schema
     {

@@ -4,6 +4,7 @@ use Livewire\Attributes\Title;
 use Livewire\Component;
 use App\Models\TeamMember;
 use App\Models\Department;
+use App\Models\Institution;
 
 new
 #[Title("Deputy Principal Administration")]

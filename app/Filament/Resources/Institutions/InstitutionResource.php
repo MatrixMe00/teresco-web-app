@@ -10,7 +10,6 @@ use App\Filament\Resources\Institutions\Schemas\InstitutionForm;
 use App\Filament\Resources\Institutions\Schemas\InstitutionInfolist;
 use App\Filament\Resources\Institutions\Tables\InstitutionsTable;
 use App\Models\Institution;
-use BackedEnum;
 use Filament\Resources\Resource;
 use Filament\Schemas\Schema;
 use Filament\Support\Icons\Heroicon;
@@ -20,9 +19,19 @@ class InstitutionResource extends Resource
 {
     protected static ?string $model = Institution::class;
 
-    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
+    protected static string|\BackedEnum|null $navigationIcon = Heroicon::OutlinedBuildingOffice2;
 
     protected static ?string $recordTitleAttribute = 'name';
+
+    protected static \UnitEnum|string|null $navigationGroup = 'Settings & System';
+
+    protected static ?int $navigationSort = 1;
+
+    protected static ?string $navigationLabel = 'College Settings';
+
+    protected static ?string $modelLabel = 'College Setting';
+
+    protected static ?string $pluralModelLabel = 'College Settings';
 
     public static function form(Schema $schema): Schema
     {

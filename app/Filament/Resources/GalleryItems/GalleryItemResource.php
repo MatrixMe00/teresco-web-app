@@ -10,7 +10,6 @@ use App\Filament\Resources\GalleryItems\Schemas\GalleryItemForm;
 use App\Filament\Resources\GalleryItems\Schemas\GalleryItemInfolist;
 use App\Filament\Resources\GalleryItems\Tables\GalleryItemsTable;
 use App\Models\GalleryItem;
-use BackedEnum;
 use Filament\Resources\Resource;
 use Filament\Schemas\Schema;
 use Filament\Support\Icons\Heroicon;
@@ -20,9 +19,11 @@ class GalleryItemResource extends Resource
 {
     protected static ?string $model = GalleryItem::class;
 
-    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedPhoto;
+    protected static string|\BackedEnum|null $navigationIcon = Heroicon::OutlinedPhoto;
 
-    protected static ?int $navigationSort = 11;
+    protected static \UnitEnum|string|null $navigationGroup = 'Content Management';
+
+    protected static ?int $navigationSort = 5;
 
     public static function form(Schema $schema): Schema
     {

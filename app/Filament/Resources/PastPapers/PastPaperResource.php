@@ -10,7 +10,6 @@ use App\Filament\Resources\PastPapers\Schemas\PastPaperForm;
 use App\Filament\Resources\PastPapers\Schemas\PastPaperInfolist;
 use App\Filament\Resources\PastPapers\Tables\PastPapersTable;
 use App\Models\PastPaper;
-use BackedEnum;
 use Filament\Resources\Resource;
 use Filament\Schemas\Schema;
 use Filament\Support\Icons\Heroicon;
@@ -20,9 +19,13 @@ class PastPaperResource extends Resource
 {
     protected static ?string $model = PastPaper::class;
 
-    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
+    protected static string|\BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
 
     protected static ?string $recordTitleAttribute = 'title';
+
+    protected static \UnitEnum|string|null $navigationGroup = 'Academics & Faculty';
+
+    protected static ?int $navigationSort = 4;
 
     public static function form(Schema $schema): Schema
     {
