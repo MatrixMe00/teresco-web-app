@@ -33,11 +33,12 @@ class AdminPanelProvider extends PanelProvider
                 'warning' => '#eab308',
                 'danger' => '#ef4444',
             ])
-            ->font('Inter')
+            ->font('Plus Jakarta Sans')
             ->favicon(asset('images/logo.jpeg'))
             // ->brandLogo(asset('images/logo.jpeg'))
             ->brandName('TERESCO Admin')
-            // ->globalSearchKeyBindings(['ctrl+k', 'cmd+k'])
+            ->sidebarCollapsibleOnDesktop()
+            ->globalSearchKeyBindings(['ctrl+k', 'cmd+k'])
             ->discoverResources(in: app_path('Filament/Resources'), for: 'App\Filament\Resources')
             ->discoverPages(in: app_path('Filament/Pages'), for: 'App\Filament\Pages')
             ->pages([
