@@ -2,10 +2,7 @@
 
 namespace App\Filament\Resources\Contacts;
 
-use App\Filament\Resources\Contacts\Pages\CreateContact;
-use App\Filament\Resources\Contacts\Pages\EditContact;
 use App\Filament\Resources\Contacts\Pages\ListContacts;
-use App\Filament\Resources\Contacts\Pages\ViewContact;
 use App\Filament\Resources\Contacts\Schemas\ContactForm;
 use App\Filament\Resources\Contacts\Schemas\ContactInfolist;
 use App\Filament\Resources\Contacts\Tables\ContactsTable;
@@ -53,9 +50,6 @@ class ContactResource extends Resource
     {
         return [
             'index' => ListContacts::route('/'),
-            'create' => CreateContact::route('/create'),
-            'view' => ViewContact::route('/{record}'),
-            'edit' => EditContact::route('/{record}/edit'),
         ];
     }
 }

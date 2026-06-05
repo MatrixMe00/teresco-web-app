@@ -2,10 +2,7 @@
 
 namespace App\Filament\Resources\PastPapers;
 
-use App\Filament\Resources\PastPapers\Pages\CreatePastPaper;
-use App\Filament\Resources\PastPapers\Pages\EditPastPaper;
 use App\Filament\Resources\PastPapers\Pages\ListPastPapers;
-use App\Filament\Resources\PastPapers\Pages\ViewPastPaper;
 use App\Filament\Resources\PastPapers\Schemas\PastPaperForm;
 use App\Filament\Resources\PastPapers\Schemas\PastPaperInfolist;
 use App\Filament\Resources\PastPapers\Tables\PastPapersTable;
@@ -53,9 +50,6 @@ class PastPaperResource extends Resource
     {
         return [
             'index' => ListPastPapers::route('/'),
-            'create' => CreatePastPaper::route('/create'),
-            'view' => ViewPastPaper::route('/{record}'),
-            'edit' => EditPastPaper::route('/{record}/edit'),
         ];
     }
 }

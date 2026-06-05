@@ -30,8 +30,8 @@ class RolesTable
                 //
             ])
             ->recordActions([
-                ViewAction::make(),
-                EditAction::make(),
+                ViewAction::make()->slideOver()->modalWidth('md')->iconButton()->tooltip('View Role'),
+                EditAction::make()->slideOver()->modalWidth('md')->iconButton()->tooltip('Edit Role'),
             ])
             ->toolbarActions([
                 BulkActionGroup::make([

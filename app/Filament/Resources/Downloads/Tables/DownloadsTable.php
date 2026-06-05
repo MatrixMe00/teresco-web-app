@@ -37,8 +37,8 @@ class DownloadsTable
                 //
             ])
             ->recordActions([
-                ViewAction::make(),
-                EditAction::make(),
+                ViewAction::make()->slideOver()->modalWidth('lg')->iconButton()->tooltip('View Download'),
+                EditAction::make()->slideOver()->modalWidth('lg')->iconButton()->tooltip('Edit Download'),
             ])
             ->toolbarActions([
                 BulkActionGroup::make([

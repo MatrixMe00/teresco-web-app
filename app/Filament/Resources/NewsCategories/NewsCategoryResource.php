@@ -2,10 +2,7 @@
 
 namespace App\Filament\Resources\NewsCategories;
 
-use App\Filament\Resources\NewsCategories\Pages\CreateNewsCategory;
-use App\Filament\Resources\NewsCategories\Pages\EditNewsCategory;
 use App\Filament\Resources\NewsCategories\Pages\ListNewsCategories;
-use App\Filament\Resources\NewsCategories\Pages\ViewNewsCategory;
 use App\Filament\Resources\NewsCategories\Schemas\NewsCategoryForm;
 use App\Filament\Resources\NewsCategories\Schemas\NewsCategoryInfolist;
 use App\Filament\Resources\NewsCategories\Tables\NewsCategoriesTable;
@@ -51,9 +48,6 @@ class NewsCategoryResource extends Resource
     {
         return [
             'index' => ListNewsCategories::route('/'),
-            'create' => CreateNewsCategory::route('/create'),
-            'view' => ViewNewsCategory::route('/{record}'),
-            'edit' => EditNewsCategory::route('/{record}/edit'),
         ];
     }
 }

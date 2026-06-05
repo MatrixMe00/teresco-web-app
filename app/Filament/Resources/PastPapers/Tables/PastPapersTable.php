@@ -44,8 +44,8 @@ class PastPapersTable
                 //
             ])
             ->recordActions([
-                ViewAction::make(),
-                EditAction::make(),
+                ViewAction::make()->slideOver()->modalWidth('lg')->iconButton()->tooltip('View Past Paper'),
+                EditAction::make()->slideOver()->modalWidth('lg')->iconButton()->tooltip('Edit Past Paper'),
             ])
             ->toolbarActions([
                 BulkActionGroup::make([

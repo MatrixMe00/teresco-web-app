@@ -2,7 +2,7 @@
 
 namespace App\Filament\Resources\Partners\Schemas;
 
-use Filament\Forms\Components\FileUpload;
+use App\Filament\Support\SchemaHelper;
 use Filament\Forms\Components\TextInput;
 use Filament\Schemas\Components\Section;
 use Filament\Schemas\Schema;
@@ -13,21 +13,26 @@ class PartnerForm
     {
         return $schema
             ->components([
-
                 Section::make('Partner Details')
-                    ->columns(2)
+                    ->description('Manage relationships with industry and academic partners.')
                     ->columnSpan('full')
                     ->schema([
                         TextInput::make('name')
+                            ->label('Partner Name')
+                            ->placeholder('e.g., Mastercard Foundation')
                             ->required(),
-                        FileUpload::make('logo')
-                            ->image()
-                            ->disk('public')
-                            ->directory('partners')
-                            ->required(),
-                        TextInput::make('website'),
 
-                    ]),
+                        TextInput::make('website')
+                            ->label('Website URL')
+                            ->placeholder('e.g., https://example.com')
+                            ->url()
+                            ->nullable(),
+
+                        SchemaHelper::featuredImageUpload('logo', 'Partner Logo', 'partners')
+                            ->required()
+                            ->columnSpanFull(),
+                    ])
+                    ->columns(2),
             ]);
     }
 }

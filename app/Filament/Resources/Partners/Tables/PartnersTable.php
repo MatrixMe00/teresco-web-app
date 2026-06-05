@@ -36,8 +36,8 @@ class PartnersTable
                 //
             ])
             ->recordActions([
-                ViewAction::make(),
-                EditAction::make(),
+                ViewAction::make()->slideOver()->modalWidth('lg')->iconButton()->tooltip('View Partner'),
+                EditAction::make()->slideOver()->modalWidth('lg')->iconButton()->tooltip('Edit Partner'),
             ])
             ->toolbarActions([
                 BulkActionGroup::make([

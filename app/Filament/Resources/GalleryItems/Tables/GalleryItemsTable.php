@@ -37,8 +37,8 @@ class GalleryItemsTable
                 //
             ])
             ->recordActions([
-                ViewAction::make(),
-                EditAction::make(),
+                ViewAction::make()->slideOver()->modalWidth('lg')->iconButton()->tooltip('View Gallery Item'),
+                EditAction::make()->slideOver()->modalWidth('lg')->iconButton()->tooltip('Edit Gallery Item'),
             ])
             ->toolbarActions([
                 BulkActionGroup::make([

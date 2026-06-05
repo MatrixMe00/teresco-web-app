@@ -2,9 +2,11 @@
 
 namespace App\Filament\Resources\GalleryItems\Schemas;
 
-use Filament\Forms\Components\FileUpload;
+use App\Filament\Support\SchemaHelper;
+use Filament\Forms\Components\Select;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
+use Filament\Schemas\Components\Section;
 use Filament\Schemas\Schema;
 
 class GalleryItemForm
@@ -13,17 +15,37 @@ class GalleryItemForm
     {
         return $schema
             ->components([
-                TextInput::make('gallery_id')
-                    ->required()
-                    ->numeric(),
-                TextInput::make('name')
-                    ->required(),
-                TextInput::make('category'),
-                Textarea::make('description')
-                    ->columnSpanFull(),
-                FileUpload::make('image')
-                    ->image()
-                    ->required(),
+                Section::make('Gallery Item Details')
+                    ->description('Assign images or videos to albums in the media galleries.')
+                    ->columnSpan('full')
+                    ->schema([
+                        Select::make('gallery_id')
+                            ->label('Gallery Album')
+                            ->relationship('gallery', 'name')
+                            ->required()
+                            ->placeholder('Select album...'),
+
+                        TextInput::make('name')
+                            ->label('Caption / Name')
+                            ->placeholder('e.g., Graduation Day 2026')
+                            ->required(),
+
+                        TextInput::make('category')
+                            ->label('Category tag')
+                            ->placeholder('e.g., Academics, Sports, Campus')
+                            ->nullable(),
+
+                        Textarea::make('description')
+                            ->label('Additional Description')
+                            ->placeholder('Provide any optional description or context for this photo...')
+                            ->rows(3)
+                            ->columnSpanFull(),
+
+                        SchemaHelper::featuredImageUpload('image', 'Gallery Photo', 'gallery')
+                            ->required()
+                            ->columnSpanFull(),
+                    ])
+                    ->columns(2),
             ]);
     }
 }

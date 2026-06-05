@@ -32,8 +32,8 @@ class NewsCategoriesTable
                 //
             ])
             ->recordActions([
-                ViewAction::make(),
-                EditAction::make(),
+                ViewAction::make()->slideOver()->modalWidth('lg')->iconButton()->tooltip('View Category'),
+                EditAction::make()->slideOver()->modalWidth('lg')->iconButton()->tooltip('Edit Category'),
             ])
             ->toolbarActions([
                 BulkActionGroup::make([

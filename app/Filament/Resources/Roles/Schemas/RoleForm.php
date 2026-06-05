@@ -12,11 +12,15 @@ class RoleForm
     {
         return $schema
             ->components([
-
                 Section::make('Role Details')
+                    ->description('Define user groups and access levels.')
+                    ->columnSpan('full')
                     ->schema([
                         TextInput::make('name')
-                            ->required(),
+                            ->label('Role Name')
+                            ->placeholder('e.g., Administrator, Editor')
+                            ->required()
+                            ->unique(ignoreRecord: true),
                     ]),
             ]);
     }

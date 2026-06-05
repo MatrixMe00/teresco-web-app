@@ -2,10 +2,7 @@
 
 namespace App\Filament\Resources\Downloads;
 
-use App\Filament\Resources\Downloads\Pages\CreateDownload;
-use App\Filament\Resources\Downloads\Pages\EditDownload;
 use App\Filament\Resources\Downloads\Pages\ListDownloads;
-use App\Filament\Resources\Downloads\Pages\ViewDownload;
 use App\Filament\Resources\Downloads\Schemas\DownloadForm;
 use App\Filament\Resources\Downloads\Schemas\DownloadInfolist;
 use App\Filament\Resources\Downloads\Tables\DownloadsTable;
@@ -55,9 +52,6 @@ class DownloadResource extends Resource
     {
         return [
             'index' => ListDownloads::route('/'),
-            'create' => CreateDownload::route('/create'),
-            'view' => ViewDownload::route('/{record}'),
-            'edit' => EditDownload::route('/{record}/edit'),
         ];
     }
 }

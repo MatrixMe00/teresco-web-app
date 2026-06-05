@@ -2,10 +2,7 @@
 
 namespace App\Filament\Resources\Partners;
 
-use App\Filament\Resources\Partners\Pages\CreatePartner;
-use App\Filament\Resources\Partners\Pages\EditPartner;
 use App\Filament\Resources\Partners\Pages\ListPartners;
-use App\Filament\Resources\Partners\Pages\ViewPartner;
 use App\Filament\Resources\Partners\Schemas\PartnerForm;
 use App\Filament\Resources\Partners\Schemas\PartnerInfolist;
 use App\Filament\Resources\Partners\Tables\PartnersTable;
@@ -53,9 +50,6 @@ class PartnerResource extends Resource
     {
         return [
             'index' => ListPartners::route('/'),
-            'create' => CreatePartner::route('/create'),
-            'view' => ViewPartner::route('/{record}'),
-            'edit' => EditPartner::route('/{record}/edit'),
         ];
     }
 }
