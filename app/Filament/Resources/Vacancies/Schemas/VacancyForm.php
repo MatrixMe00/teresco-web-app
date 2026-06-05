@@ -2,8 +2,8 @@
 
 namespace App\Filament\Resources\Vacancies\Schemas;
 
+use App\Filament\Support\SchemaHelper;
 use Filament\Forms\Components\DatePicker;
-use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\RichEditor;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
@@ -23,16 +23,19 @@ class VacancyForm
                     Section::make('Vacancy Details')
                         ->schema([
                             TextInput::make('title')
+                                ->label('Job Title')
                                 ->required()
                                 ->maxLength(255)
-                                ->placeholder('e.g. Lecturer in Cosmetology'),
+                                ->placeholder('e.g., Lecturer in Cosmetology'),
 
                             TextInput::make('reference_number')
+                                ->label('Reference Number')
                                 ->required()
                                 ->maxLength(100)
-                                ->placeholder('e.g. TCOE/HR/2026/04'),
+                                ->placeholder('e.g., TCOE/HR/2026/04'),
 
                             Select::make('department_id')
+                                ->label('Department')
                                 ->relationship('department', 'name')
                                 ->required()
                                 ->placeholder('Select department'),
@@ -45,30 +48,22 @@ class VacancyForm
                         ->columnSpan(2),
 
                     // Sidebar Settings Column (1/3 width)
-                    Section::make('Schedule & Settings')
+                    Section::make()
                         ->schema([
-                            Select::make('status')
-                                ->options([
-                                    'open' => 'Open',
-                                    'closed' => 'Closed',
-                                ])
-                                ->default('open')
-                                ->required(),
+                            SchemaHelper::statusCard('state', 'status'),
 
-                            DatePicker::make('published_at')
-                                ->label('Publish Date')
-                                ->default(now()->toDateString()),
+                            Section::make('Schedule & Documents')
+                                ->schema([
+                                    DatePicker::make('published_at')
+                                        ->label('Publish Date')
+                                        ->default(now()->toDateString()),
 
-                            DatePicker::make('application_deadline')
-                                ->label('Deadline')
-                                ->required(),
+                                    DatePicker::make('application_deadline')
+                                        ->label('Application Deadline')
+                                        ->required(),
 
-                            FileUpload::make('attachment_path')
-                                ->label('Details PDF Attachment')
-                                ->disk('public')
-                                ->directory('vacancies')
-                                ->acceptedFileTypes(['application/pdf'])
-                                ->maxSize(5120), // 5MB
+                                    SchemaHelper::pdfAttachmentUpload('attachment_path', 'Job Details PDF', 'vacancies'),
+                                ]),
                         ])
                         ->columnSpan(1),
                 ]),

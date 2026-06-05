@@ -2,9 +2,9 @@
 
 namespace App\Filament\Resources\NewsItems\Schemas;
 
+use App\Filament\Support\SchemaHelper;
 use App\Models\NewsCategory;
 use Filament\Forms\Components\DateTimePicker;
-use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\RichEditor;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\Textarea;
@@ -26,15 +26,20 @@ class NewsItemForm
                     Section::make('News Content')
                         ->schema([
                             TextInput::make('title')
+                                ->label('Title')
                                 ->required()
                                 ->maxLength(255)
-                                ->placeholder('Enter a catchy news title...'),
+                                ->placeholder('Enter a catchy news title...')
+                                ->live(onBlur: true)
+                                ->afterStateUpdated(fn (string $state, $set) => $set('slug', str($state)->slug())),
 
                             TextInput::make('slug')
+                                ->label('Slug')
                                 ->required()
                                 ->maxLength(255)
                                 ->placeholder('auto-generated-slug')
-                                ->helperText('This determines the URL structure of the news post.'),
+                                ->helperText('This determines the URL structure of the news post.')
+                                ->unique(ignoreRecord: true),
 
                             Textarea::make('excerpt')
                                 ->label('Short Excerpt')
@@ -58,16 +63,10 @@ class NewsItemForm
                                 ->required()
                                 ->placeholder('Select category'),
 
-                            FileUpload::make('image')
-                                ->label('Cover Image')
-                                ->disk('public')
-                                ->directory('news-images')
-                                ->image()
-                                ->imageEditor()
-                                ->maxSize(5120), // 5MB
+                            SchemaHelper::featuredImageUpload('image', 'Cover Image', 'news-images'),
 
                             Toggle::make('is_published')
-                                ->label('Publish Immediately')
+                                ->label('Publish Status')
                                 ->live()
                                 ->afterStateUpdated(function ($state, $set) {
                                     if ($state) {
@@ -78,7 +77,7 @@ class NewsItemForm
                                 }),
 
                             DateTimePicker::make('published_at')
-                                ->label('Published Date & Time')
+                                ->label('Published At')
                                 ->readonly()
                                 ->dehydrated(),
                         ])

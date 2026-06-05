@@ -2,10 +2,11 @@
 
 namespace App\Filament\Resources\SuccessStories\Schemas;
 
-use Filament\Forms\Components\FileUpload;
+use App\Filament\Support\SchemaHelper;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
+use Filament\Forms\Components\Toggle;
 use Filament\Schemas\Components\Section;
 use Filament\Schemas\Schema;
 
@@ -15,42 +16,73 @@ class SuccessStoryForm
     {
         return $schema
             ->components([
-                Section::make('Success Story Details')
-                    ->columns(2)
+                Section::make()
+                    ->columns(3)
                     ->columnSpanFull()
                     ->schema([
-                        Select::make('department_id')
-                            ->required()
-                            ->relationship('department', 'name'),
-                        TextInput::make('name')
-                            ->required(),
-                        FileUpload::make('photo')
-                            ->image()
-                            ->disk('public')
-                            ->directory('success-stories')
-                            ->required(),
-                        TextInput::make('course')
-                            ->required(),
-                        TextInput::make('year')
-                            ->required(),
-                        TextInput::make('occupation')
-                            ->required(),
-                        TextInput::make('company')
-                            ->required(),
-                        Textarea::make('statement')
-                            ->required()
-                            ->columnSpanFull(),
-                        TextInput::make('rating')
-                            ->required()
-                            ->numeric()
-                            ->default(5),
-                        Select::make('is_approved')
-                            ->required()
-                            ->options([
-                                1 => 'Approved',
-                                0 => 'Not Approved',
+                        // Main Column (2/3 width)
+                        Section::make('Student Testimonial')
+                            ->schema([
+                                TextInput::make('name')
+                                    ->label('Alumni Name')
+                                    ->placeholder('e.g., John Doe')
+                                    ->required(),
+
+                                Select::make('department_id')
+                                    ->label('Department')
+                                    ->relationship('department', 'name')
+                                    ->required()
+                                    ->placeholder('Select department...'),
+
+                                TextInput::make('course')
+                                    ->label('Course Studied')
+                                    ->placeholder('e.g., Diploma in Automotive Engineering')
+                                    ->required(),
+
+                                Textarea::make('statement')
+                                    ->label('Testimonial Statement')
+                                    ->placeholder('Type the success story statement here...')
+                                    ->rows(5)
+                                    ->required()
+                                    ->columnSpanFull(),
                             ])
-                            ->default(0),
+                            ->columnSpan(2),
+
+                        // Sidebar Column (1/3 width)
+                        Section::make('Metadata & Media')
+                            ->schema([
+                                SchemaHelper::featuredImageUpload('photo', 'Student Photo', 'success-stories')
+                                    ->required(),
+
+                                TextInput::make('year')
+                                    ->label('Graduation Year')
+                                    ->placeholder('e.g., 2024')
+                                    ->required(),
+
+                                TextInput::make('occupation')
+                                    ->label('Current Job Position')
+                                    ->placeholder('e.g., Mechanical Engineer')
+                                    ->required(),
+
+                                TextInput::make('company')
+                                    ->label('Current Employer')
+                                    ->placeholder('e.g., Toyota Kenya')
+                                    ->required(),
+
+                                TextInput::make('rating')
+                                    ->label('Rating (1-5 Stars)')
+                                    ->numeric()
+                                    ->minValue(1)
+                                    ->maxValue(5)
+                                    ->default(5)
+                                    ->required(),
+
+                                Toggle::make('is_approved')
+                                    ->label('Approve and Publish')
+                                    ->default(false)
+                                    ->required(),
+                            ])
+                            ->columnSpan(1),
                     ]),
             ]);
     }
