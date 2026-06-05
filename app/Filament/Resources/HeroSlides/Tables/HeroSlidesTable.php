@@ -16,7 +16,8 @@ class HeroSlidesTable
     {
         return $table
             ->columns([
-                ImageColumn::make('image'),
+                ImageColumn::make('image')
+                    ->circular(),
                 TextColumn::make('title')
                     ->searchable(),
                 TextColumn::make('subtitle')
@@ -40,8 +41,8 @@ class HeroSlidesTable
                 //
             ])
             ->recordActions([
-                ViewAction::make(),
-                EditAction::make(),
+                ViewAction::make()->iconButton()->tooltip('View Slide'),
+                EditAction::make()->iconButton()->tooltip('Edit Slide'),
             ])
             ->toolbarActions([
                 BulkActionGroup::make([

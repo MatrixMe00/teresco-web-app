@@ -17,7 +17,8 @@ class CoursesTable
         return $table
             ->columns([
                 ImageColumn::make('photo')
-                    ->disk('public'),
+                    ->disk('public')
+                    ->circular(),
                 TextColumn::make('name')
                     ->searchable(),
                 TextColumn::make('department.name')
@@ -43,8 +44,8 @@ class CoursesTable
                 //
             ])
             ->recordActions([
-                ViewAction::make(),
-                EditAction::make(),
+                ViewAction::make()->iconButton()->tooltip('View Course'),
+                EditAction::make()->iconButton()->tooltip('Edit Course'),
             ])
             ->toolbarActions([
                 BulkActionGroup::make([

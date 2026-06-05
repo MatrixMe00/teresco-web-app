@@ -22,10 +22,8 @@ class TeamMembersTable
                 TextColumn::make('name')
                     ->searchable(),
                 TextColumn::make('department.name')
-                    ->numeric()
                     ->sortable(),
                 TextColumn::make('role.name')
-                    ->numeric()
                     ->sortable(),
                 TextColumn::make('section_assigned')
                     ->searchable()

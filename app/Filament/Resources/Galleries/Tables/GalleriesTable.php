@@ -18,7 +18,8 @@ class GalleriesTable
             ->columns([
                 TextColumn::make('name')
                     ->searchable(),
-                ImageColumn::make('image'),
+                ImageColumn::make('image')
+                    ->circular(),
                 TextColumn::make('created_at')
                     ->dateTime()
                     ->sortable()
@@ -32,8 +33,8 @@ class GalleriesTable
                 //
             ])
             ->recordActions([
-                ViewAction::make(),
-                EditAction::make(),
+                ViewAction::make()->iconButton()->tooltip('View Gallery'),
+                EditAction::make()->iconButton()->tooltip('Edit Gallery'),
             ])
             ->toolbarActions([
                 BulkActionGroup::make([

@@ -20,7 +20,6 @@ class VacanciesTable
                 TextColumn::make('reference_number')
                     ->searchable(),
                 TextColumn::make('department.name')
-                    ->numeric()
                     ->sortable(),
                 TextColumn::make('published_at')
                     ->date()

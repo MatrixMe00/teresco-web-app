@@ -15,12 +15,16 @@ class InstitutionsTable
     {
         return $table
             ->columns([
+                ImageColumn::make('logo')
+                    ->circular()
+                    ->disk('public'),
                 TextColumn::make('name')
                     ->searchable(),
                 TextColumn::make('principal_name')
                     ->searchable(),
-                TextColumn::make('principal_photo')
-                    ->searchable(),
+                ImageColumn::make('principal_photo')
+                    ->circular()
+                    ->disk('public'),
                 TextColumn::make('motto')
                     ->searchable(),
                 TextColumn::make('primary_color')
@@ -33,13 +37,17 @@ class InstitutionsTable
                     ->label('Email address')
                     ->searchable(),
                 TextColumn::make('facebook')
-                    ->searchable(),
+                    ->searchable()
+                    ->toggleable(isToggledHiddenByDefault: true),
                 TextColumn::make('tiktok')
-                    ->searchable(),
+                    ->searchable()
+                    ->toggleable(isToggledHiddenByDefault: true),
                 TextColumn::make('x')
-                    ->searchable(),
+                    ->searchable()
+                    ->toggleable(isToggledHiddenByDefault: true),
                 TextColumn::make('youtube')
-                    ->searchable(),
+                    ->searchable()
+                    ->toggleable(isToggledHiddenByDefault: true),
                 TextColumn::make('created_at')
                     ->dateTime()
                     ->sortable()
@@ -53,8 +61,8 @@ class InstitutionsTable
                 //
             ])
             ->recordActions([
-                ViewAction::make(),
-                EditAction::make(),
+                ViewAction::make()->iconButton()->tooltip('View Institution Settings'),
+                EditAction::make()->iconButton()->tooltip('Edit Institution Settings'),
             ])
             ->toolbarActions([
                 BulkActionGroup::make([

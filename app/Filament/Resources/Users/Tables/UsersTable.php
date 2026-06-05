@@ -21,6 +21,12 @@ class UsersTable
                     ->label('Email address')
                     ->searchable(),
                 TextColumn::make('role')
+                    ->badge()
+                    ->color(fn (string $state): string => match ($state) {
+                        'admin' => 'danger',
+                        'editor' => 'info',
+                        default => 'gray',
+                    })
                     ->sortable(),
                 TextColumn::make('created_at')
                     ->dateTime()
@@ -35,8 +41,8 @@ class UsersTable
                 //
             ])
             ->recordActions([
-                ViewAction::make(),
-                EditAction::make(),
+                ViewAction::make()->iconButton()->tooltip('View User'),
+                EditAction::make()->iconButton()->tooltip('Edit User'),
             ])
             ->toolbarActions([
                 BulkActionGroup::make([

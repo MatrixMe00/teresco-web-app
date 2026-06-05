@@ -16,8 +16,9 @@ class NewsItemsTable
     {
         return $table
             ->columns([
-                TextColumn::make('news_category_id')
-                    ->numeric()
+                TextColumn::make('category.name')
+                    ->label('Category')
+                    ->searchable()
                     ->sortable(),
                 TextColumn::make('title')
                     ->searchable(),

@@ -17,7 +17,8 @@ class DepartmentsTable
         return $table
             ->columns([
                 ImageColumn::make('photo')
-                    ->disk('public'),
+                    ->disk('public')
+                    ->circular(),
                 TextColumn::make('name')
                     ->searchable(),
                 TextColumn::make('slug')
@@ -30,8 +31,8 @@ class DepartmentsTable
                 //
             ])
             ->recordActions([
-                ViewAction::make(),
-                EditAction::make(),
+                ViewAction::make()->iconButton()->tooltip('View Department'),
+                EditAction::make()->iconButton()->tooltip('Edit Department'),
             ])
             ->toolbarActions([
                 BulkActionGroup::make([

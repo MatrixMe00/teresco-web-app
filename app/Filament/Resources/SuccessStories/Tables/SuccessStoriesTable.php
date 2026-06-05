@@ -23,7 +23,6 @@ class SuccessStoriesTable
                 TextColumn::make('name')
                     ->searchable(),
                 TextColumn::make('department.name')
-                    ->numeric()
                     ->sortable(),
                 TextColumn::make('course')
                     ->searchable(),
