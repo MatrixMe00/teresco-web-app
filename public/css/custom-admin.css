@@ -37,6 +37,7 @@ button[type="submit"].fi-btn:active {
 }
 
 /* Gray/Secondary Buttons (Cancel, Create & Create Another) */
+/* Light Mode */
 .fi-btn.fi-color-gray {
     background: #ffffff !important;
     color: #374151 !important;
@@ -55,6 +56,21 @@ button[type="submit"].fi-btn:active {
     transform: translateY(1px) !important;
 }
 
+/* Dark Mode Gray Buttons */
+.dark .fi-btn.fi-color-gray {
+    background: #27272a !important; /* zinc-800 */
+    color: #e4e4e7 !important; /* zinc-200 */
+    border: 1px solid #3f3f46 !important; /* zinc-700 */
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.15) !important;
+}
+
+.dark .fi-btn.fi-color-gray:hover {
+    background: #3f3f46 !important; /* zinc-700 */
+    border-color: #52525b !important; /* zinc-600 */
+    color: #ffffff !important;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.25) !important;
+}
+
 /* Danger Buttons (Delete) */
 .fi-btn.fi-color-danger {
     background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%) !important;
@@ -69,6 +85,7 @@ button[type="submit"].fi-btn:active {
 }
 
 /* Modal Styling Enhancements */
+/* Light Mode Modals */
 .fi-modal-window {
     border-radius: 1.25rem !important;
     border: 1px solid rgba(0, 0, 0, 0.05) !important;
@@ -76,7 +93,6 @@ button[type="submit"].fi-btn:active {
     overflow: hidden !important;
 }
 
-/* Modal Header styling */
 .fi-modal-header {
     background: #fafafa !important;
     padding: 1.5rem 2rem !important;
@@ -89,7 +105,6 @@ button[type="submit"].fi-btn:active {
     font-family: 'Plus Jakarta Sans', sans-serif !important;
 }
 
-/* Modal Footer styling */
 .fi-modal-footer {
     background: #fafafa !important;
     padding: 1.25rem 2rem !important;
@@ -97,14 +112,42 @@ button[type="submit"].fi-btn:active {
     gap: 1rem !important;
 }
 
+/* Dark Mode Modals */
+.dark .fi-modal-window {
+    border: 1px solid rgba(255, 255, 255, 0.08) !important;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5), 0 0 40px rgba(122, 75, 125, 0.1) !important;
+}
+
+.dark .fi-modal-header {
+    background: #18181b !important; /* zinc-900 */
+    border-bottom: 1px solid #27272a !important; /* zinc-800 */
+}
+
+.dark .fi-modal-heading {
+    color: #f4f4f5 !important; /* zinc-100 */
+}
+
+.dark .fi-modal-footer {
+    background: #18181b !important; /* zinc-900 */
+    border-top: 1px solid #27272a !important; /* zinc-800 */
+}
+
 /* Form Sections */
+/* Light Mode */
 .fi-fo-section {
     border-radius: 0.75rem !important;
     border: 1px solid #f3f4f6 !important;
     box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.05) !important;
 }
 
+/* Dark Mode */
+.dark .fi-fo-section {
+    border: 1px solid #27272a !important; /* zinc-800 */
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.2) !important;
+}
+
 /* Input Fields hover and focus effects */
+/* Light Mode */
 .fi-input-wrp {
     transition: all 0.2s ease !important;
     border-radius: 0.5rem !important;
@@ -117,4 +160,14 @@ button[type="submit"].fi-btn:active {
 .fi-input-wrp:focus-within {
     border-color: #7a4b7d !important;
     box-shadow: 0 0 0 3px rgba(122, 75, 125, 0.12) !important;
+}
+
+/* Dark Mode */
+.dark .fi-input-wrp:hover {
+    border-color: #4b5563 !important; /* gray-600 */
+}
+
+.dark .fi-input-wrp:focus-within {
+    border-color: #9c63a0 !important; /* brand primary tint */
+    box-shadow: 0 0 0 3px rgba(156, 99, 160, 0.2) !important;
 }
