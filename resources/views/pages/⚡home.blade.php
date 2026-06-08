@@ -62,15 +62,14 @@ class extends Component {
             <!-- Text content -->
             <div class="text-white" data-aos="fade-right" data-aos-duration="1000">
                 <div class="section-label text-orange-400" data-aos="fade-down" data-aos-delay="200">
-                    KNQA Accredited Institution
+                    {{ $institution->hero_badge ?? 'KNQA Accredited Institution' }}
                 </div>
                 <h1 class="font-display text-5xl sm:text-6xl lg:text-7xl font-black leading-none text-white mb-6"
                     data-aos="fade-up" data-aos-delay="300">
                     {{ $institution->motto }}
                 </h1>
                 <p class="text-gray-300 text-lg leading-relaxed mb-8 max-w-lg" data-aos="fade-up" data-aos-delay="400">
-                    St. Theresa's College of Education offers world-class technical education designed to equip
-                    students with practical skills for today's economy. Located in Accra.
+                    {{ $institution->hero_description ?? "St. Theresa's College of Education offers world-class technical education designed to equip students with practical skills for today's economy. Located in Accra." }}
                 </p>
                 <div class="flex flex-col sm:flex-row gap-4" data-aos="fade-up" data-aos-delay="500">
                     <a href="{{ route('admissions') }}"
@@ -295,7 +294,7 @@ class extends Component {
                 {{-- Image --}}
                 <div data-aos="fade-up" class="relative">
                     <div class="aspect-[4/3] rounded-2xl overflow-hidden shadow-xl">
-                        <img src="{{ asset('images/gate.jpg') }}" alt="{{ $institution->name }} History"
+                        <img src="{{ $institution->history_image ? asset('storage/' . $institution->history_image) : asset('images/gate.jpg') }}" alt="{{ $institution->name }} History"
                             class="object-cover w-full h-full">
                     </div>
                     {{-- Decorative badge --}}
@@ -310,17 +309,15 @@ class extends Component {
                     <span
                         class="inline-block px-3 py-1 rounded-full bg-primary/10 text-primary text-xs font-bold tracking-widest uppercase mb-3">Our
                         History</span>
-                    <h2 class="text-3xl lg:text-4xl font-extrabold text-gray-900 mb-4">Building the Future Since {{
-                        $institution->established_year ?? '2020' }}</h2>
-                    <p class="text-gray-600 text-base leading-relaxed mb-6">
-                        {{ $institution->history ?? 'TERESCO has been at the forefront of
-                        providing quality technical and vocational education in Ghana. Our institution is
-                        dedicated to equipping students with practical skills that meet industry demands.' }}
-                    </p>
-                    <p class="text-gray-600 text-base leading-relaxed mb-8">
-                        Through years of excellence, we have grown to become one of the leading TVET institutions in the
-                        region, offering diverse programs that empower youth with market-relevant skills and knowledge.
-                    </p>
+                    <h2 class="text-3xl lg:text-4xl font-extrabold text-gray-900 mb-4">{{ $institution->history_title ?? ('Building the Future Since ' . ($institution->established_year ?? '2020')) }}</h2>
+                    <div class="text-gray-600 text-base leading-relaxed mb-8 space-y-4">
+                        @if($institution->history_description)
+                            {!! nl2br(e($institution->history_description)) !!}
+                        @else
+                            <p>TERESCO has been at the forefront of providing quality technical and vocational education in Ghana. Our institution is dedicated to equipping students with practical skills that meet industry demands.</p>
+                            <p>Through years of excellence, we have grown to become one of the leading TVET institutions in the region, offering diverse programs that empower youth with market-relevant skills and knowledge.</p>
+                        @endif
+                    </div>
                     <a href="{{ route('about') }}"
                         class="inline-flex items-center gap-2 px-6 py-3 text-sm font-bold text-white bg-primary rounded-lg shadow-lg hover:brightness-110 hover:shadow-xl transition-all">
                         Learn More About Us <i class="fas fa-arrow-right text-xs"></i>
@@ -548,23 +545,26 @@ class extends Component {
 
             {{-- Stats strip --}}
             <div class="mt-16 grid gap-6 grid-cols-2 lg:grid-cols-4">
-                @foreach([
-                ['target' => 92, 'suffix' => '%', 'label' => 'Graduation Rate', 'icon' => 'fa-graduation-cap'],
-                ['target' => 85, 'suffix' => '%', 'label' => 'Job Placement', 'icon' => 'fa-briefcase'],
-                ['target' => 78, 'suffix' => '%', 'label' => 'Industry Partners', 'icon' => 'fa-handshake'],
-                ['target' => 120, 'suffix' => '+', 'label' => 'Certifications', 'icon' => 'fa-award'],
-                ] as $stat)
+                @php
+                    $statsList = !empty($institution->homepage_stats) ? $institution->homepage_stats : [
+                        ['value' => 92, 'suffix' => '%', 'label' => 'Graduation Rate', 'icon' => 'fa-graduation-cap'],
+                        ['value' => 85, 'suffix' => '%', 'label' => 'Job Placement', 'icon' => 'fa-briefcase'],
+                        ['value' => 78, 'suffix' => '%', 'label' => 'Industry Partners', 'icon' => 'fa-handshake'],
+                        ['value' => 120, 'suffix' => '+', 'label' => 'Certifications', 'icon' => 'fa-award'],
+                    ];
+                @endphp
+                @foreach($statsList as $stat)
                 <div data-aos="fade-up" data-aos-delay="{{ $loop->index * 100 }}" data-aos-anchor-placement="top-bottom"
                     class="flex flex-col sm:flex-row items-center sm:items-start gap-3 sm:gap-4 p-4 sm:p-5 bg-gray-50 rounded-2xl border border-gray-100 hover:border-primary/20 hover:shadow transition-all text-center sm:text-left">
                     <div class="w-12 h-12 rounded-xl bg-primary flex items-center justify-center shrink-0 mx-auto sm:mx-0"
                         data-aos="zoom-in" data-aos-delay="{{ $loop->index * 100 + 200 }}">
-                        <i class="fas {{ $stat['icon'] }} text-white text-lg"></i>
+                        <i class="fas {{ $stat['icon'] ?? 'fa-chart-bar' }} text-white text-lg"></i>
                     </div>
                     <div>
                         <div class="text-2xl sm:text-3xl font-extrabold text-gray-900 leading-none">
-                            <span class="counter" data-target="{{ $stat['target'] }}">0</span>{{ $stat['suffix'] }}
+                            <span class="counter" data-target="{{ $stat['value'] ?? 0 }}">0</span>{{ $stat['suffix'] ?? '' }}
                         </div>
-                        <div class="text-gray-500 text-sm mt-0.5">{{ $stat['label'] }}</div>
+                        <div class="text-gray-500 text-sm mt-0.5">{{ $stat['label'] ?? '' }}</div>
                     </div>
                 </div>
                 @endforeach

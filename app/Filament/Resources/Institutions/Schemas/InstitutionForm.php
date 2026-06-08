@@ -94,6 +94,84 @@ class InstitutionForm
                                 ]),
                         ]),
 
+                    // TAB: HOMEPAGE SETTINGS
+                    Tab::make('Homepage Settings')
+                        ->icon(Heroicon::OutlinedHome)
+                        ->schema([
+                            Section::make('Hero Customization')
+                                ->description('Update the homepage hero section text details')
+                                ->columns(2)
+                                ->schema([
+                                    TextInput::make('hero_badge')
+                                        ->label('Hero Accent Badge Text')
+                                        ->placeholder('e.g. KNQA Accredited Institution')
+                                        ->maxLength(255)
+                                        ->columnSpan(1),
+
+                                    Textarea::make('hero_description')
+                                        ->label('Hero Section Description')
+                                        ->placeholder('e.g. St. Theresa\'s College of Education offers world-class technical education...')
+                                        ->rows(3)
+                                        ->columnSpan(1),
+                                ]),
+
+                            Section::make('Our History (Homepage)')
+                                ->description('Customize the brief history section shown on the homepage')
+                                ->schema([
+                                    Grid::make(2)
+                                        ->schema([
+                                            TextInput::make('history_title')
+                                                ->label('History Section Title')
+                                                ->placeholder('e.g. Building the Future')
+                                                ->columnSpan(1),
+
+                                            FileUpload::make('history_image')
+                                                ->label('History Cover Image')
+                                                ->image()
+                                                ->disk('public')
+                                                ->directory('homepage')
+                                                ->columnSpan(1),
+                                        ]),
+
+                                    Textarea::make('history_description')
+                                        ->label('History Brief Description')
+                                        ->placeholder('Enter history brief description...')
+                                        ->rows(4)
+                                        ->columnSpanFull(),
+                                ]),
+
+                            Section::make('Homepage Stats Strip')
+                                ->description('Manage the 4 stats cards displayed on the homepage')
+                                ->schema([
+                                    Repeater::make('homepage_stats')
+                                        ->label('Stats Cards')
+                                        ->grid(2)
+                                        ->schema([
+                                            Grid::make(3)
+                                                ->schema([
+                                                    TextInput::make('value')
+                                                        ->label('Stat Value (Counter)')
+                                                        ->required()
+                                                        ->placeholder('e.g. 92'),
+                                                    TextInput::make('suffix')
+                                                        ->label('Suffix Symbol')
+                                                        ->placeholder('e.g. % or +'),
+                                                    TextInput::make('label')
+                                                        ->label('Stat Description')
+                                                        ->required()
+                                                        ->placeholder('e.g. Graduation Rate'),
+                                                    TextInput::make('icon')
+                                                        ->label('FontAwesome Icon Name')
+                                                        ->required()
+                                                        ->placeholder('e.g. fa-graduation-cap')
+                                                        ->columnSpanFull(),
+                                                ]),
+                                        ])
+                                        ->columnSpanFull()
+                                        ->maxItems(4),
+                                ]),
+                        ]),
+
                     // TAB 2: ABOUT US PAGE
                     Tab::make('About Us Page')
                         ->icon(Heroicon::OutlinedBookOpen)

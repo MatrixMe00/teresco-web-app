@@ -70,6 +70,12 @@ class Institution extends Model
         'show_stats_section',
         'show_journey_section',
         'show_impact_section',
+        'hero_badge',
+        'hero_description',
+        'history_title',
+        'history_description',
+        'history_image',
+        'homepage_stats',
     ];
 
     protected $casts = [
@@ -84,6 +90,7 @@ class Institution extends Model
         'show_stats_section' => 'boolean',
         'show_journey_section' => 'boolean',
         'show_impact_section' => 'boolean',
+        'homepage_stats' => 'array',
     ];
 
     public function getPrimaryColorRgbAttribute()
