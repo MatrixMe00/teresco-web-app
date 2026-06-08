@@ -27,6 +27,7 @@ class AppServiceProvider extends ServiceProvider
         // Register custom admin stylesheet for premium UI overrides (buttons, modals, etc.)
         FilamentAsset::register([
             Css::make('custom-admin-theme', public_path('css/custom-admin.css')),
+            Css::make('font-awesome', 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css'),
         ]);
 
         // Share institution and departments with all views using view composer

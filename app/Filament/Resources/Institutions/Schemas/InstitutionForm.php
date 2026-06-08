@@ -147,23 +147,29 @@ class InstitutionForm
                                         ->label('Stats Cards')
                                         ->grid(2)
                                         ->schema([
-                                            Grid::make(3)
+                                            Grid::make(12)
                                                 ->schema([
                                                     TextInput::make('value')
                                                         ->label('Stat Value (Counter)')
                                                         ->required()
-                                                        ->placeholder('e.g. 92'),
+                                                        ->placeholder('e.g. 92')
+                                                        ->columnSpan(6),
                                                     TextInput::make('suffix')
                                                         ->label('Suffix Symbol')
-                                                        ->placeholder('e.g. % or +'),
+                                                        ->placeholder('e.g. % or +')
+                                                        ->columnSpan(6),
                                                     TextInput::make('label')
                                                         ->label('Stat Description')
                                                         ->required()
-                                                        ->placeholder('e.g. Graduation Rate'),
-                                                    TextInput::make('icon')
-                                                        ->label('FontAwesome Icon Name')
+                                                        ->placeholder('e.g. Graduation Rate')
+                                                        ->columnSpan(12),
+                                                    Select::make('icon')
+                                                        ->label('Icon')
+                                                        ->options(static::getFontAwesomeIconOptions())
+                                                        ->searchable()
+                                                        ->allowHtml()
+                                                        ->native(false)
                                                         ->required()
-                                                        ->placeholder('e.g. fa-graduation-cap')
                                                         ->columnSpanFull(),
                                                 ]),
                                         ])
@@ -240,19 +246,25 @@ class InstitutionForm
                                         ->label('Core Value Cards')
                                         ->grid(2)
                                         ->schema([
-                                            Grid::make(2)
+                                            Grid::make(12)
                                                 ->schema([
                                                     TextInput::make('title')
                                                         ->required()
-                                                        ->placeholder('e.g. Excellence'),
-                                                    TextInput::make('icon')
+                                                        ->placeholder('e.g. Excellence')
+                                                        ->columnSpan(12),
+                                                    Select::make('icon')
+                                                        ->label('Icon')
+                                                        ->options(static::getFontAwesomeIconOptions())
+                                                        ->searchable()
+                                                        ->allowHtml()
+                                                        ->native(false)
                                                         ->required()
-                                                        ->placeholder('e.g. fa-check-circle'),
+                                                        ->columnSpan(12),
                                                     Textarea::make('desc')
                                                         ->required()
                                                         ->rows(2)
                                                         ->placeholder('Value description...')
-                                                        ->columnSpanFull(),
+                                                        ->columnSpan(12),
                                                 ]),
                                         ])
                                         ->columnSpanFull()
@@ -280,19 +292,27 @@ class InstitutionForm
                                         ->label('Stats Counters')
                                         ->grid(2)
                                         ->schema([
-                                            Grid::make(4)
+                                            Grid::make(12)
                                                 ->schema([
                                                     TextInput::make('value')
                                                         ->required()
-                                                        ->placeholder('e.g. 500'),
+                                                        ->placeholder('e.g. 500')
+                                                        ->columnSpan(6),
                                                     TextInput::make('suffix')
-                                                        ->placeholder('e.g. + or %'),
+                                                        ->placeholder('e.g. + or %')
+                                                        ->columnSpan(6),
                                                     TextInput::make('label')
                                                         ->required()
-                                                        ->placeholder('e.g. Students Enrolled'),
-                                                    TextInput::make('icon')
+                                                        ->placeholder('e.g. Students Enrolled')
+                                                        ->columnSpan(12),
+                                                    Select::make('icon')
+                                                        ->label('Icon')
+                                                        ->options(static::getFontAwesomeIconOptions())
+                                                        ->searchable()
+                                                        ->allowHtml()
+                                                        ->native(false)
                                                         ->required()
-                                                        ->placeholder('e.g. fa-user-graduate'),
+                                                        ->columnSpan(12),
                                                 ]),
                                         ])
                                         ->columnSpanFull()
@@ -387,19 +407,25 @@ class InstitutionForm
                                         ->label('Impact Areas')
                                         ->grid(2)
                                         ->schema([
-                                            Grid::make(2)
+                                            Grid::make(12)
                                                 ->schema([
                                                     TextInput::make('title')
                                                         ->required()
-                                                        ->placeholder('e.g. Economic Development'),
-                                                    TextInput::make('icon')
+                                                        ->placeholder('e.g. Economic Development')
+                                                        ->columnSpan(12),
+                                                    Select::make('icon')
+                                                        ->label('Icon')
+                                                        ->options(static::getFontAwesomeIconOptions())
+                                                        ->searchable()
+                                                        ->allowHtml()
+                                                        ->native(false)
                                                         ->required()
-                                                        ->placeholder('e.g. fa-chart-line'),
+                                                        ->columnSpan(12),
                                                     Textarea::make('desc')
                                                         ->required()
                                                         ->rows(2)
                                                         ->placeholder('Impact details...')
-                                                        ->columnSpanFull(),
+                                                        ->columnSpan(12),
                                                 ]),
                                         ])
                                         ->columnSpanFull()
@@ -648,5 +674,88 @@ class InstitutionForm
                         ]),
                 ]),
         ]);
+    }
+
+    public static function getFontAwesomeIconOptions(): array
+    {
+        $icons = [
+            // Academic & Education
+            'fa-graduation-cap' => 'Graduation Cap',
+            'fa-book-open' => 'Book (Open)',
+            'fa-book' => 'Book',
+            'fa-chalkboard-teacher' => 'Teacher / Lecture',
+            'fa-school' => 'School Building',
+            'fa-university' => 'University / Campus',
+            'fa-user-graduate' => 'Graduate / Student',
+            'fa-certificate' => 'Certificate',
+            'fa-award' => 'Award / Badge',
+            'fa-trophy' => 'Trophy / Achievement',
+            'fa-microscope' => 'Science / Lab',
+            'fa-flask' => 'Chemistry / Experiment',
+            'fa-calculator' => 'Math / Calculator',
+            'fa-compass' => 'Compass / Navigation',
+            'fa-globe' => 'Globe / Geography',
+            'fa-globe-africa' => 'Globe (Africa)',
+            'fa-palette' => 'Art / Palette',
+            'fa-music' => 'Music / Note',
+            'fa-pen-fancy' => 'Writing / Pen',
+            'fa-atom' => 'Physics / Science',
+
+            // Technology & Skills
+            'fa-laptop-code' => 'Computer Science / Coding',
+            'fa-microchip' => 'Electronics / Microchip',
+            'fa-database' => 'Database / IT',
+            'fa-network-wired' => 'Networking',
+            'fa-server' => 'Servers / Hosting',
+            'fa-tools' => 'Tools / Engineering',
+            'fa-wrench' => 'Wrench / Mechanic',
+            'fa-screwdriver' => 'Screwdriver / Assembly',
+            'fa-cog' => 'Gear / Settings',
+            'fa-cogs' => 'Gears / Process',
+            'fa-lightbulb' => 'Innovation / Lightbulb',
+            'fa-rocket' => 'Rocket / Launch',
+            'fa-brain' => 'Brain / AI',
+
+            // Business & Administration
+            'fa-briefcase' => 'Career / Placement',
+            'fa-handshake' => 'Partnerships',
+            'fa-chart-line' => 'Growth / Chart',
+            'fa-chart-bar' => 'Stats / Analytics',
+            'fa-building' => 'Corporate / Office',
+            'fa-users' => 'Community / Group',
+            'fa-bullhorn' => 'Announcement / Marketing',
+            'fa-calendar-alt' => 'Calendar / Events',
+            'fa-clock' => 'Schedule / Time',
+            'fa-envelope' => 'Email / Inbox',
+            'fa-phone-alt' => 'Phone / Contact',
+            'fa-shield-alt' => 'Security / Safety',
+            'fa-user-shield' => 'Security / Safeguarding',
+            'fa-gavel' => 'Governance / Law',
+            'fa-map-marked-alt' => 'Campus Map',
+            'fa-check-circle' => 'Verification / Check',
+
+            // Student Life & Recreation
+            'fa-running' => 'Sports / Athletics',
+            'fa-dumbbell' => 'Gym / Fitness',
+            'fa-campground' => 'Camping / Outdoor',
+            'fa-theater-masks' => 'Drama / Theater',
+            'fa-comments' => 'Discussion / Forums',
+            'fa-hands-helping' => 'Support / Help',
+            'fa-hand-holding-heart' => 'Donation / Giving',
+            'fa-hand-holding-usd' => 'Financial Aid / Scholarship',
+            'fa-heart' => 'Heart / Care',
+            'fa-seedling' => 'Growth / Environment',
+            'fa-leaf' => 'Ecology / Sustainability',
+            'fa-wifi' => 'WiFi / Connectivity',
+            'fa-coffee' => 'Cafe / Lounge',
+            'fa-utensils' => 'Cafeteria / Food',
+        ];
+
+        $options = [];
+        foreach ($icons as $class => $label) {
+            $options[$class] = "<span style='display: flex; align-items: center; gap: 8px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;'><i class='fas {$class}' style='width: 20px; text-align: center; color: #ea580c; flex-shrink: 0;'></i> <span>{$label}</span></span>";
+        }
+
+        return $options;
     }
 }
