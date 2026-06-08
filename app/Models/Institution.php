@@ -58,6 +58,18 @@ class Institution extends Model
         'admission_guide',
         'footer_description',
         'footer_copyright',
+        'about_hero_subtitle',
+        'about_us_title',
+        'values_title',
+        'values_description',
+        'journey_title',
+        'journey_description',
+        'impact_title',
+        'impact_description',
+        'show_values_section',
+        'show_stats_section',
+        'show_journey_section',
+        'show_impact_section',
     ];
 
     protected $casts = [
@@ -68,6 +80,10 @@ class Institution extends Model
         'charter_items' => 'array',
         'admission_fields_config' => 'array',
         'accept_admissions_online' => 'boolean',
+        'show_values_section' => 'boolean',
+        'show_stats_section' => 'boolean',
+        'show_journey_section' => 'boolean',
+        'show_impact_section' => 'boolean',
     ];
 
     public function getPrimaryColorRgbAttribute()

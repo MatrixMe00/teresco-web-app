@@ -23,7 +23,19 @@ class extends Component
             'stats' => [],
             'timeline' => [],
             'community_impact' => [],
-            'core_values' => []
+            'core_values' => [],
+            'about_hero_subtitle' => 'Empowering futures through technical education excellence since 2019',
+            'about_us_title' => 'Building the Future Through Technical Excellence',
+            'values_title' => 'Core Values That Guide Us',
+            'values_description' => 'These principles define who we are and how we approach technical education.',
+            'journey_title' => 'Our Journey',
+            'journey_description' => 'The story of how we grew from a vision to a leading TVET institution.',
+            'impact_title' => 'Community Impact',
+            'impact_description' => 'How we\'re making a difference in our community and beyond.',
+            'show_values_section' => true,
+            'show_stats_section' => true,
+            'show_journey_section' => true,
+            'show_impact_section' => true,
         ];
 
         return [
@@ -68,7 +80,7 @@ class extends Component
         <div class="container relative z-10 px-4 mx-auto text-center">
             <span class="inline-block px-4 py-1.5 rounded-full bg-primary/20 text-primary text-xs font-bold tracking-widest uppercase mb-4" data-aos="fade-down">About Us</span>
             <h1 class="hero-display mb-4 text-4xl font-bold text-white md:text-5xl lg:text-6xl" data-aos="fade-up">{{ $institution->name }}</h1>
-            <p class="max-w-2xl mx-auto text-lg text-gray-300 md:text-xl" data-aos="fade-up" data-aos-delay="100">Empowering futures through technical education excellence since 2019</p>
+            <p class="max-w-2xl mx-auto text-lg text-gray-300 md:text-xl" data-aos="fade-up" data-aos-delay="100">{{ $institution->about_hero_subtitle ?? 'Empowering futures through technical education excellence since 2019' }}</p>
         </div>
     </section>
 
@@ -79,7 +91,7 @@ class extends Component
                 {{-- Content --}}
                 <div data-aos="fade-right" class="order-2 lg:order-1">
                     <span class="inline-block px-3 py-1 rounded-full bg-primary/10 text-primary text-xs font-bold tracking-widest uppercase mb-3">Who We Are</span>
-                    <h2 class="text-3xl lg:text-4xl font-extrabold text-gray-900 mb-6">Building the Future Through Technical Excellence</h2>
+                    <h2 class="text-3xl lg:text-4xl font-extrabold text-gray-900 mb-6">{{ $institution->about_us_title ?? 'Building the Future Through Technical Excellence' }}</h2>
 
                     <div class="prose max-w-none text-gray-600 mb-8 leading-relaxed">
                         {!! $institution->about_us !!}
@@ -116,13 +128,14 @@ class extends Component
         </div>
     </section>
 
+    @if($institution->show_values_section ?? true)
     <!-- Core Values Section -->
     <section class="py-20 bg-gray-50">
         <div class="max-w-7xl mx-auto px-4 lg:px-8">
             <div class="mb-14 text-center" data-aos="fade-up">
                 <span class="inline-block px-4 py-1.5 rounded-full bg-primary/10 text-primary text-xs font-bold tracking-widest uppercase mb-3">Our Values</span>
-                <h2 class="text-3xl lg:text-4xl font-extrabold text-gray-900 mb-4">Core Values That Guide Us</h2>
-                <p class="max-w-2xl mx-auto text-gray-500 text-base leading-relaxed">These principles define who we are and how we approach technical education.</p>
+                <h2 class="text-3xl lg:text-4xl font-extrabold text-gray-900 mb-4">{{ $institution->values_title ?? 'Core Values That Guide Us' }}</h2>
+                <p class="max-w-2xl mx-auto text-gray-500 text-base leading-relaxed">{{ $institution->values_description ?? 'These principles define who we are and how we approach technical education.' }}</p>
             </div>
 
             <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
@@ -138,7 +151,9 @@ class extends Component
             </div>
         </div>
     </section>
+    @endif
 
+    @if($institution->show_stats_section ?? true)
     <!-- Statistics Section -->
     <section class="py-16 bg-white border-t border-b border-gray-100">
         <div class="max-w-7xl mx-auto px-4 lg:px-8">
@@ -159,14 +174,16 @@ class extends Component
             </div>
         </div>
     </section>
+    @endif
 
+    @if($institution->show_journey_section ?? true)
     <!-- Our Journey Section with Timeline -->
     <section class="py-20 bg-gray-50">
         <div class="max-w-7xl mx-auto px-4 lg:px-8">
             <div class="mb-14 text-center" data-aos="fade-up">
                 <span class="inline-block px-4 py-1.5 rounded-full bg-primary/10 text-primary text-xs font-bold tracking-widest uppercase mb-3">Our History</span>
-                <h2 class="text-3xl lg:text-4xl font-extrabold text-gray-900 mb-4">Our Journey</h2>
-                <p class="max-w-2xl mx-auto text-gray-500 text-base leading-relaxed">The story of how we grew from a vision to a leading TVET institution.</p>
+                <h2 class="text-3xl lg:text-4xl font-extrabold text-gray-900 mb-4">{{ $institution->journey_title ?? 'Our Journey' }}</h2>
+                <p class="max-w-2xl mx-auto text-gray-500 text-base leading-relaxed">{{ $institution->journey_description ?? 'The story of how we grew from a vision to a leading TVET institution.' }}</p>
             </div>
 
             <div class="relative">
@@ -200,14 +217,16 @@ class extends Component
             </div>
         </div>
     </section>
+    @endif
 
+    @if($institution->show_impact_section ?? true)
     <!-- Community Impact Section -->
     <section class="py-20 bg-white">
         <div class="max-w-7xl mx-auto px-4 lg:px-8">
             <div class="mb-14 text-center" data-aos="fade-up">
                 <span class="inline-block px-4 py-1.5 rounded-full bg-primary/10 text-primary text-xs font-bold tracking-widest uppercase mb-3">Our Impact</span>
-                <h2 class="text-3xl lg:text-4xl font-extrabold text-gray-900 mb-4">Community Impact</h2>
-                <p class="max-w-2xl mx-auto text-gray-500 text-base leading-relaxed">How we're making a difference in our community and beyond.</p>
+                <h2 class="text-3xl lg:text-4xl font-extrabold text-gray-900 mb-4">{{ $institution->impact_title ?? 'Community Impact' }}</h2>
+                <p class="max-w-2xl mx-auto text-gray-500 text-base leading-relaxed">{{ $institution->impact_description ?? "How we're making a difference in our community and beyond." }}</p>
             </div>
 
             <div class="grid gap-6 md:grid-cols-3">
@@ -226,6 +245,7 @@ class extends Component
             </div>
         </div>
     </section>
+    @endif
 
     <!-- CTA Banner -->
     <section class="relative py-16 overflow-hidden bg-cyan-950" data-aos="fade-up" data-aos-duration="800">
