@@ -39,7 +39,7 @@ class extends Component
                 @if ($deputyAdmin)
                 <div class="md:w-1/3 lg:w-1/4">
                     <div class="relative h-full min-h-[300px] md:min-h-[400px] bg-gray-200 flex items-center justify-center">
-                        @if ($deputyAdmin->photo)
+                        @if ($deputyAdmin->photo && \Storage::disk('public')->exists($deputyAdmin->photo))
                         <img src="{{ asset('storage/'.$deputyAdmin->photo) }}" 
                             alt="{{ $deputyAdmin->name }}"
                             class="object-cover w-full h-full">

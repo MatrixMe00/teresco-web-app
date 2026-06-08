@@ -77,13 +77,16 @@ class extends Component
                     <div class="flex flex-col items-center p-6 md:flex-row md:items-start">
                         <div class="flex-shrink-0 mb-4 md:mb-0 md:mr-6">
                             <div class="p-1 rounded-full bg-gradient-to-r from-orange-500 to-orange-700">
-                                <img @if ($principal->photo && Storage::disk('public')->exists($principal->photo))
-                                src="{{ asset('storage/'.$principal->photo) }}"
-                                @else
-                                src="{{ asset('images/default-avatar.jpg') }}"
-                                @endif
-                                alt="Photo of {{ $principal->name }}"
-                                class="object-cover w-32 h-32 rounded-full md:w-40 md:h-40">
+                                @php
+                                    $principalPhoto = ($principal->photo && Storage::disk('public')->exists($principal->photo))
+                                        ? $principal->photo
+                                        : (($institution && $institution->principal_photo && Storage::disk('public')->exists($institution->principal_photo))
+                                            ? $institution->principal_photo
+                                            : null);
+                                @endphp
+                                <img src="{{ $principalPhoto ? asset('storage/'.$principalPhoto) : asset('images/default-avatar.jpg') }}"
+                                    alt="Photo of {{ $principal->name }}"
+                                    class="object-cover w-32 h-32 rounded-full md:w-40 md:h-40">
                             </div>
                         </div>
                         <div class="text-center md:text-left">
@@ -118,13 +121,16 @@ class extends Component
                     <div class="p-6 text-center">
                         <div
                             class="p-1 mx-auto mb-4 rounded-full bg-gradient-to-r from-orange-400 to-orange-600 w-28 h-28">
-                            <img @if ($deputy->photo && Storage::disk('public')->exists($deputy->photo))
-                            src="{{ asset('storage/'.$deputy->photo) }}"
-                            @else
-                            src="{{ asset('images/default-avatar.jpg') }}"
-                            @endif
-                            alt="{{$deputy->name}}"
-                            class="object-cover w-full h-full rounded-full">
+                            @php
+                                $deputyPhoto = ($deputy->photo && Storage::disk('public')->exists($deputy->photo))
+                                    ? $deputy->photo
+                                    : (($institution && $institution->vice_principal_photo && Storage::disk('public')->exists($institution->vice_principal_photo))
+                                        ? $institution->vice_principal_photo
+                                        : null);
+                            @endphp
+                            <img src="{{ $deputyPhoto ? asset('storage/'.$deputyPhoto) : asset('images/default-avatar.jpg') }}"
+                                alt="{{$deputy->name}}"
+                                class="object-cover w-full h-full rounded-full">
                         </div>
                         <h3 class="mb-1 text-xl font-bold text-gray-800">{{$deputy->name}}</h3>
                         <p class="mb-1 font-medium text-orange-600">{{ $deputy->role->name }}</p>

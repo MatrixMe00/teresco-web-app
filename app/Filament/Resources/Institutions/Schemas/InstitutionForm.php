@@ -19,6 +19,7 @@ use Filament\Schemas\Components\Utilities\Get;
 use Filament\Schemas\Components\Utilities\Set;
 use Filament\Schemas\Schema;
 use Filament\Support\Icons\Heroicon;
+use Illuminate\Support\HtmlString;
 
 class InstitutionForm
 {
@@ -663,10 +664,14 @@ class InstitutionForm
                                         ->columnSpanFull(),
 
                                     TextInput::make('latitude')
-                                        ->label('Latitude'),
+                                        ->label('Latitude')
+                                        ->placeholder('e.g. 5.7596')
+                                        ->helperText(new HtmlString('To get this: Go to Google Maps, right-click your location, and click the numbers to copy both (e.g., <u>5.7596</u>, -0.2185). Paste the first number (<u>5.7596</u>) here.')),
 
                                     TextInput::make('longitude')
-                                        ->label('Longitude'),
+                                        ->label('Longitude')
+                                        ->placeholder('e.g. -0.2185')
+                                        ->helperText(new HtmlString('To get this: Go to Google Maps, right-click your location, and click the numbers to copy both (e.g., 5.7596, <u>-0.2185</u>). Paste the second number (<u>-0.2185</u>) here.')),
                                 ]),
 
                             Section::make('Social Media Links')
