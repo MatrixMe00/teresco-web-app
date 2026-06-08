@@ -12,6 +12,7 @@ class Institution extends Model
         'principal_name',
         'principal_photo',
         'welcome_message',
+        'principal_message',
         'about_us',
         'primary_color',
         'primary_font',
@@ -95,14 +96,24 @@ class Institution extends Model
         'homepage_stats' => 'array',
     ];
 
-    public function getPrimaryColorRgbAttribute()
+    public function getPrincipalMessageAttribute(): ?string
+    {
+        return $this->welcome_message;
+    }
+
+    public function setPrincipalMessageAttribute(?string $value): void
+    {
+        $this->attributes['welcome_message'] = $value;
+    }
+
+    public function getPrimaryColorRgbAttribute(): string
     {
         return $this->hex2rgb($this->primary_color);
     }
 
-    private function hex2rgb($hex)
+    private function hex2rgb(?string $hex): string
     {
-        $hex = str_replace('#', '', $hex);
+        $hex = str_replace('#', '', $hex ?? '#ea580c');
 
         if (strlen($hex) == 3) {
             $r = hexdec(str_repeat($hex[0], 2));
