@@ -8,6 +8,8 @@ use App\Models\SuccessStory;
 use App\Models\Partner;
 use App\Models\HeroSlide;
 use App\Models\Institution;
+use App\Models\NewsItem;
+use App\Models\GalleryItem;
 
 new
 #[Title('Welcome to Our College')]
@@ -27,6 +29,8 @@ class extends Component {
                                             ->get(),
             'partners'=> Partner::all(),
             'heroSlides'=> HeroSlide::all(),
+            'latestNews' => NewsItem::where('is_published', true)->latest('published_at')->first(),
+            'latestGalleryItem' => GalleryItem::latest()->first(),
         ];
     }
 };
@@ -247,17 +251,19 @@ class extends Component {
                 <a href="{{ route('news') }}" data-aos="fade-up" data-aos-delay="100"
                     class="group flex items-stretch gap-5 p-6 bg-white rounded-2xl border border-gray-200 shadow-sm hover:shadow-lg hover:border-primary/40 transition-all">
                     <div class="w-20 rounded-xl overflow-hidden shrink-0">
-                        <img src="{{ asset('images/gate.jpg') }}" alt="Updates" class="object-cover w-full h-full">
+                        <img src="{{ $latestNews && $latestNews->image ? (Str::startsWith($latestNews->image, 'images/') ? asset($latestNews->image) : asset('storage/' . $latestNews->image)) : asset('images/gate.jpg') }}" 
+                            alt="Latest News" class="object-cover w-full h-full">
                     </div>
                     <div class="flex-grow min-w-0">
-                        <h4
-                            class="font-bold text-gray-800 text-base truncate group-hover:text-primary transition-colors mb-2">
-                            News and Updates</h4>
-                        <p class="text-gray-500 text-sm leading-relaxed line-clamp-2 mb-3">Latest news, announcements
-                            and upcoming events</p>
-                        <span
-                            class="inline-flex items-center gap-1 text-sm font-semibold text-primary group-hover:gap-2 transition-all">Read
-                            More <i class="fas fa-arrow-right text-xs"></i></span>
+                        <h4 class="font-bold text-gray-800 text-base truncate group-hover:text-primary transition-colors mb-2">
+                            {{ $latestNews ? $latestNews->title : 'News and Updates' }}
+                        </h4>
+                        <p class="text-gray-500 text-sm leading-relaxed line-clamp-2 mb-3">
+                            {{ $latestNews ? ($latestNews->excerpt ?? Str::limit(strip_tags($latestNews->content), 100)) : 'Latest news, announcements and upcoming events' }}
+                        </p>
+                        <span class="inline-flex items-center gap-1 text-sm font-semibold text-primary group-hover:gap-2 transition-all">
+                            Read More <i class="fas fa-arrow-right text-xs"></i>
+                        </span>
                     </div>
                 </a>
 
@@ -265,17 +271,19 @@ class extends Component {
                 <a href="{{ route('gallery') }}" data-aos="fade-up-left" data-aos-delay="200"
                     class="group flex items-stretch gap-5 p-6 bg-white rounded-2xl border border-gray-200 shadow-sm hover:shadow-lg hover:border-primary/40 transition-all">
                     <div class="w-20 rounded-xl overflow-hidden shrink-0">
-                        <img src="{{ asset('images/gate.jpg') }}" alt="Gallery" class="object-cover w-full h-full">
+                        <img src="{{ $latestGalleryItem && $latestGalleryItem->image ? asset('storage/' . $latestGalleryItem->image) : asset('images/gate.jpg') }}" 
+                            alt="Latest Gallery Image" class="object-cover w-full h-full">
                     </div>
                     <div class="flex-grow min-w-0">
-                        <h4
-                            class="font-bold text-gray-800 text-base truncate group-hover:text-primary transition-colors mb-2">
-                            Photo Gallery</h4>
-                        <p class="text-gray-500 text-sm leading-relaxed line-clamp-2 mb-3">View photos and videos of our
-                            campus life</p>
-                        <span
-                            class="inline-flex items-center gap-1 text-sm font-semibold text-primary group-hover:gap-2 transition-all">View
-                            Gallery <i class="fas fa-arrow-right text-xs"></i></span>
+                        <h4 class="font-bold text-gray-800 text-base truncate group-hover:text-primary transition-colors mb-2">
+                            {{ $latestGalleryItem ? $latestGalleryItem->name : 'Photo Gallery' }}
+                        </h4>
+                        <p class="text-gray-500 text-sm leading-relaxed line-clamp-2 mb-3">
+                            {{ $latestGalleryItem ? ($latestGalleryItem->description ?? 'View photos and videos of our campus life') : 'View photos and videos of our campus life' }}
+                        </p>
+                        <span class="inline-flex items-center gap-1 text-sm font-semibold text-primary group-hover:gap-2 transition-all">
+                            View Gallery <i class="fas fa-arrow-right text-xs"></i>
+                        </span>
                     </div>
                 </a>
 

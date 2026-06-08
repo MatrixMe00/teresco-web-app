@@ -200,6 +200,7 @@ class InstitutionForm
 
                                     RichEditor::make('about_us')
                                         ->label('About Us Text')
+                                        ->extraInputAttributes(['style' => 'min-height: 350px;'])
                                         ->columnSpanFull(),
 
                                     FileUpload::make('about_us_image')
@@ -449,7 +450,7 @@ class InstitutionForm
                                                         ->label("Principal's Name"),
                                                     Textarea::make('principal_qualifications')
                                                         ->label("Principal's Qualifications")
-                                                        ->rows(2),
+                                                        ->rows(4),
                                                 ]),
                                             FileUpload::make('principal_photo')
                                                 ->label("Principal's Photo")
@@ -460,11 +461,11 @@ class InstitutionForm
                                                 ->columnSpan(1),
                                             Textarea::make('principal_message')
                                                 ->label("Principal's Message / Quote")
-                                                ->rows(3)
+                                                ->rows(6)
                                                 ->columnSpanFull(),
                                             Textarea::make('principal_bio')
                                                 ->label("Principal's Full Bio / Background")
-                                                ->rows(4)
+                                                ->rows(8)
                                                 ->columnSpanFull(),
                                         ]),
                                 ]),
@@ -481,7 +482,7 @@ class InstitutionForm
                                                         ->label("Vice Principal's Name"),
                                                     Textarea::make('vice_principal_qualifications')
                                                         ->label("Vice Principal's Qualifications")
-                                                        ->rows(2),
+                                                        ->rows(4),
                                                 ]),
                                             FileUpload::make('vice_principal_photo')
                                                 ->label("Vice Principal's Photo")
@@ -492,11 +493,11 @@ class InstitutionForm
                                                 ->columnSpan(1),
                                             Textarea::make('vice_principal_message')
                                                 ->label("Vice Principal's Message / Quote")
-                                                ->rows(3)
+                                                ->rows(6)
                                                 ->columnSpanFull(),
                                             Textarea::make('vice_principal_bio')
                                                 ->label("Vice Principal's Full Bio / Background")
-                                                ->rows(4)
+                                                ->rows(8)
                                                 ->columnSpanFull(),
                                         ]),
                                 ]),
@@ -513,7 +514,7 @@ class InstitutionForm
                                                         ->label("Registrar's Name"),
                                                     Textarea::make('registrar_qualifications')
                                                         ->label("Registrar's Qualifications")
-                                                        ->rows(2),
+                                                        ->rows(4),
                                                 ]),
                                             FileUpload::make('registrar_photo')
                                                 ->label("Registrar's Photo")
@@ -524,11 +525,11 @@ class InstitutionForm
                                                 ->columnSpan(1),
                                             Textarea::make('registrar_message')
                                                 ->label("Registrar's Message / Quote")
-                                                ->rows(3)
+                                                ->rows(6)
                                                 ->columnSpanFull(),
                                             Textarea::make('registrar_bio')
                                                 ->label("Registrar's Full Bio / Background")
-                                                ->rows(4)
+                                                ->rows(8)
                                                 ->columnSpanFull(),
                                         ]),
                                 ]),
@@ -539,23 +540,36 @@ class InstitutionForm
                         ->icon(Heroicon::OutlinedClipboardDocumentList)
                         ->schema([
                             Section::make('Admissions Configuration')
-                                ->description('Toggle admissions portal type and instructions')
+                                ->description('Configure how students apply to the institution.')
                                 ->schema([
                                     Grid::make(2)
                                         ->schema([
                                             Toggle::make('admission_open')
-                                                ->label('Open Admissions / Use Internal Application Form')
+                                                ->label('Admissions Status (Open / Closed)')
+                                                ->helperText('Enable or disable admissions completely. When disabled, prospective students will see a notice that applications are currently closed.')
                                                 ->live()
-                                                ->columnSpan(1),
+                                                ->columnSpan(2),
 
-                                            TextInput::make('admission_link')
+                                            Toggle::make('accept_admissions_online')
+                                                ->label('Enable Internal Online Application Form')
+                                                ->helperText('When enabled, students can apply directly on this website. When disabled, the internal form is hidden and the external link/instructions below will be shown instead.')
+                                                ->live()
+                                                ->hidden(fn (Get $get): bool => ! (bool) $get('admission_open'))
+                                                ->columnSpan(2),
+
+                                            TextInput::make('external_application_url')
                                                 ->label('External Admission Portal Link')
                                                 ->placeholder('e.g. https://portal.teresco.edu.gh')
-                                                ->columnSpan(1),
+                                                ->url()
+                                                ->hidden(fn (Get $get): bool => ! (bool) $get('admission_open') || (bool) $get('accept_admissions_online'))
+                                                ->columnSpan(2),
                                         ]),
 
-                                    RichEditor::make('admission_description')
-                                        ->label('Admission Instructions / Requirements (Displayed when internal form is closed)')
+                                    RichEditor::make('admission_requirements')
+                                        ->label('Admission Instructions / Requirements')
+                                        ->helperText('This rich text message will be displayed on the Admissions page to guide applicants when the internal online form is disabled.')
+                                        ->extraInputAttributes(['style' => 'min-height: 400px;'])
+                                        ->hidden(fn (Get $get): bool => ! (bool) $get('admission_open') || (bool) $get('accept_admissions_online'))
                                         ->columnSpanFull(),
                                 ]),
                         ]),
@@ -578,7 +592,7 @@ class InstitutionForm
 
                                                     Textarea::make('charter_description')
                                                         ->label('Charter Page Introduction')
-                                                        ->rows(4),
+                                                        ->rows(6),
                                                 ]),
 
                                             Grid::make(1)
@@ -644,7 +658,7 @@ class InstitutionForm
                                         ->email(),
 
                                     Textarea::make('address')
-                                        ->rows(3)
+                                        ->rows(5)
                                         ->label('Physical Address')
                                         ->columnSpanFull(),
 

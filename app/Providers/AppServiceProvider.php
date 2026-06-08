@@ -76,8 +76,9 @@ class AppServiceProvider extends ServiceProvider
                 'core_values' => [],
                 'community_impact' => [],
                 'admission_open' => true,
-                'admission_link' => null,
-                'admission_description' => '<p>Internal applications are open.</p>',
+                'accept_admissions_online' => true,
+                'external_application_url' => null,
+                'admission_requirements' => '<p>Internal applications are open.</p>',
                 'footer_description' => 'St. Theresa\'s College of Education',
                 'footer_note' => 'St. Theresa\'s College of Education. All Rights Reserved.',
             ];

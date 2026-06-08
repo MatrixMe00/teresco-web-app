@@ -53,8 +53,9 @@ class extends Component
                 'phone' => 'Phone not available',
                 'email' => 'Email not available',
                 'admission_open' => true,
-                'admission_link' => null,
-                'admission_description' => '<p>Internal applications are closed. Please refer to portal guidelines.</p>'
+                'accept_admissions_online' => true,
+                'external_application_url' => null,
+                'admission_requirements' => '<p>Internal applications are open. Please follow the instructions to apply.</p>'
             ]
         ];
     }
@@ -267,7 +268,7 @@ class extends Component
     <section class="py-16">
         <div class="container mx-auto px-4">
             <div class="max-w-4xl mx-auto">
-                @if($institution->admission_open)
+                @if($institution->admission_open && $institution->accept_admissions_online)
                 @if (session()->has('message'))
                 <div
                     class="bg-green-50 border border-green-200 text-green-800 px-6 py-4 rounded-xl mb-8 flex items-center">
@@ -578,25 +579,43 @@ class extends Component
                 @else
                     <!-- Rich Text Admissions Content -->
                     <div class="bg-white rounded-2xl shadow-xl overflow-hidden p-8 md:p-12 space-y-8" data-aos="fade-up">
-                        <div class="text-center">
-                            <div class="w-16 h-16 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                                <i class="fas fa-lock text-red-500 text-2xl"></i>
+                        @if($institution->admission_open)
+                            <div class="text-center">
+                                <div class="w-16 h-16 bg-orange-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                                    <i class="fas fa-external-link-alt text-primary text-2xl"></i>
+                                </div>
+                                <h2 class="text-3xl font-extrabold text-gray-900">External Admissions Portal</h2>
+                                <p class="text-gray-500 mt-2">Please use our official external portal link below to submit your application.</p>
                             </div>
-                            <h2 class="text-3xl font-extrabold text-gray-900">Admission Portal</h2>
-                            <p class="text-gray-500 mt-2">Internal application submissions are currently closed.</p>
-                        </div>
 
-                        <div class="prose max-w-none text-gray-600 leading-relaxed">
-                            {!! $institution->admission_description !!}
-                        </div>
+                            @if($institution->admission_requirements)
+                                <div class="prose max-w-none text-gray-600 leading-relaxed">
+                                    {!! $institution->admission_requirements !!}
+                                </div>
+                            @endif
 
-                        @if ($institution->admission_link)
-                            <div class="text-center pt-6">
-                                <a href="{{ $institution->admission_link }}" target="_blank"
-                                    class="inline-flex items-center gap-2 px-8 py-4 bg-primary text-white font-bold rounded-xl shadow-lg shadow-primary/25 hover:brightness-110 hover:-translate-y-0.5 transition-all font-semibold">
-                                    Apply via External Admissions Portal <i class="fas fa-external-link-alt text-sm"></i>
-                                </a>
+                            @if ($institution->external_application_url)
+                                <div class="text-center pt-6">
+                                    <a href="{{ $institution->external_application_url }}" target="_blank"
+                                        class="inline-flex items-center gap-2 px-8 py-4 bg-primary text-white font-bold rounded-xl shadow-lg shadow-primary/25 hover:brightness-110 hover:-translate-y-0.5 transition-all font-semibold">
+                                        Apply via External Admissions Portal <i class="fas fa-external-link-alt text-sm"></i>
+                                    </a>
+                                </div>
+                            @endif
+                        @else
+                            <div class="text-center">
+                                <div class="w-16 h-16 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                                    <i class="fas fa-calendar-times text-red-500 text-2xl"></i>
+                                </div>
+                                <h2 class="text-3xl font-extrabold text-gray-900">Applications Closed</h2>
+                                <p class="text-gray-500 mt-2">Online applications are currently closed. Please review the instructions and requirements below.</p>
                             </div>
+
+                            @if($institution->admission_requirements)
+                                <div class="prose max-w-none text-gray-600 leading-relaxed">
+                                    {!! $institution->admission_requirements !!}
+                                </div>
+                            @endif
                         @endif
                     </div>
                 @endif

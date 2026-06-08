@@ -4,6 +4,7 @@ use Livewire\Attributes\Title;
 use Livewire\Component;
 use App\Models\TeamMember;
 use App\Models\Role;
+use Illuminate\Support\Facades\Storage;
 
 new
 #[Title('Our Leadership Team')]
@@ -76,7 +77,7 @@ class extends Component
                     <div class="flex flex-col items-center p-6 md:flex-row md:items-start">
                         <div class="flex-shrink-0 mb-4 md:mb-0 md:mr-6">
                             <div class="p-1 rounded-full bg-gradient-to-r from-orange-500 to-orange-700">
-                                <img @if ($principal->photo)
+                                <img @if ($principal->photo && Storage::disk('public')->exists($principal->photo))
                                 src="{{ asset('storage/'.$principal->photo) }}"
                                 @else
                                 src="{{ asset('images/default-avatar.jpg') }}"
@@ -117,7 +118,7 @@ class extends Component
                     <div class="p-6 text-center">
                         <div
                             class="p-1 mx-auto mb-4 rounded-full bg-gradient-to-r from-orange-400 to-orange-600 w-28 h-28">
-                            <img @if ($deputy->photo)
+                            <img @if ($deputy->photo && Storage::disk('public')->exists($deputy->photo))
                             src="{{ asset('storage/'.$deputy->photo) }}"
                             @else
                             src="{{ asset('images/default-avatar.jpg') }}"
@@ -152,7 +153,7 @@ class extends Component
                     <div class="text-center">
                         <div
                             class="w-24 h-24 p-1 mx-auto mb-3 rounded-full bg-gradient-to-r from-orange-300 to-orange-500">
-                            <img @if ($hod->photo)
+                            <img @if ($hod->photo && Storage::disk('public')->exists($hod->photo))
                             src="{{ asset('storage/'.$hod->photo) }}"
                             @else
                             src="{{ asset('images/default-avatar.jpg') }}"
@@ -174,7 +175,7 @@ class extends Component
                     <div class="text-center">
                         <div
                             class="w-24 h-24 p-1 mx-auto mb-3 rounded-full bg-gradient-to-r from-orange-300 to-orange-500">
-                            <img @if ($hos->photo)
+                            <img @if ($hos->photo && Storage::disk('public')->exists($hos->photo))
                             src="{{ asset('storage/'.$hos->photo) }}"
                             @else
                             src="{{ asset('images/default-avatar.jpg') }}"
@@ -207,7 +208,7 @@ class extends Component
                     <div class="text-center">
                         <div
                             class="w-20 h-20 p-1 mx-auto mb-2 rounded-full bg-gradient-to-r from-orange-300 to-orange-500">
-                            <img @if ($trainer->photo)
+                            <img @if ($trainer->photo && Storage::disk('public')->exists($trainer->photo))
                             src="{{ asset('storage/'.$trainer->photo) }}"
                             @else
                             src="{{ asset('images/default-avatar.jpg') }}"
@@ -237,7 +238,7 @@ class extends Component
                     class="p-3 transition-all duration-300 transform bg-white rounded-lg shadow hover:shadow-md hover:-translate-y-1">
                     <div class="text-center">
                         <div class="w-20 h-20 p-1 mx-auto mb-2 rounded-full bg-gradient-to-r from-gray-200 to-gray-300">
-                            <img @if ($staff->photo)
+                            <img @if ($staff->photo && Storage::disk('public')->exists($staff->photo))
                             src="{{ asset('storage/'.$staff->photo) }}"
                             @else
                             src="{{ asset('images/default-avatar.jpg') }}"

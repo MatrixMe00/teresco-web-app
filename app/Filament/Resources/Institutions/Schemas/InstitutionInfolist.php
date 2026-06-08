@@ -113,17 +113,20 @@ class InstitutionInfolist
 
                 Section::make('Admissions Configuration')
                     ->schema([
-                        Grid::make(2)->schema([
+                        Grid::make(3)->schema([
                             IconEntry::make('admission_open')
-                                ->label('Admissions Portal Open')
+                                ->label('Admissions Status Open')
                                 ->boolean(),
-                            TextEntry::make('admission_link')
+                            IconEntry::make('accept_admissions_online')
+                                ->label('Accept Admissions Online')
+                                ->boolean(),
+                            TextEntry::make('external_application_url')
                                 ->label('External Admission Link')
-                                ->url(fn ($record) => $record->admission_link)
+                                ->url(fn ($record) => $record->external_application_url)
                                 ->openUrlInNewTab()
                                 ->color('primary'),
                         ]),
-                        TextEntry::make('admission_description')
+                        TextEntry::make('admission_requirements')
                             ->label('Admission Instructions')
                             ->html()
                             ->columnSpanFull(),
